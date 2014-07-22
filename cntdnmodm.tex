@@ -1,0 +1,26 @@
+\begin{table}[htbp]
+\centering
+\caption{cntdnmodm}
+\label{ref:cntdnmodm}
+\begin{tabular}{ l l c c l }
+\hline
+\textbf{Name} & \textbf{Type}          & \textbf{Direction} & \textbf{Polarity} & \textbf{Description} \\
+\hline
+clk\_i        & std\_ulogic            & IN                & HIGH             &                     \\
+rst\_ni       & std\_ulogic            & IN                & LOW              &                     \\
+en\_pi        & std\_ulogic            & IN                & HIGH             &                     \\
+count\_o      & std\_ulogic\_vector[n] & OUT               & HIGH             &                     \\
+tc\_o         & std\_ulogic            & OUT               & HIGH             &                     \\
+\hline
+\end{tabular}
+\vspace*{ 1 em }
+
+\begin{tabular}{ l l l }
+\hline
+\textbf{Name} & \textbf{Type}          & \textbf{Direction} \\
+\hline
+ n            & natural      & 4                     \\
+ m            & natural      & 9                     \\
+\hline
+\end{tabular}
+\end{table}

@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="8.50959cm" height="7cm">
+<style type="text/css" >
+	<![CDATA[
+	/* Text styles */
+	.label {
+		font-family: Courier New;
+		font-size: 10pt;
+		font-weight: normal;
+	}
+
+	.entity {
+		font-family: Arial;
+		font-size: 12pt;
+		font-weight: bold;
+	}
+
+	.port {
+		font-family: Arial;
+		font-size: 12pt;
+		font-weight: normal;
+	}
+
+	.vector {
+		font-family: Arial;
+		font-size: 10pt;
+		font-weight: normal;
+	}
+
+	.generics {
+		font-family: Arial;
+		font-size: 10pt;
+		font-weight: normal;
+	}
+
+	/* Text alignment */
+	.right {
+		dominant-baseline: central;
+		text-anchor: end;
+	}
+
+	.left {
+		dominant-baseline: central;
+		text-anchor: start;
+	}
+
+	.center {
+		dominant-baseline: central;
+		text-anchor: middle;
+	}
+
+	/* Shape styles */
+	.entityBox {
+		stroke-width: 0.05cm;
+		stroke: #000000;
+		fill: #FFFFFF;
+	}
+
+	.portBox {
+		stroke-width: 0.00cm;
+		stroke: #FFF;
+		fill: #FFFFFF;
+	}
+
+	.labelBox {
+		stroke-width: 0.00cm;
+		stroke: #000000;
+		fill: #FFFFFF;
+	}
+
+	.vectorLength {
+		stroke-width: 0.00cm;
+		fill: #FFFFFF;
+	}
+
+	.genericsBox {
+		stroke-width: 0.02cm;
+		stroke: #BFBFBF;
+		fill: #F2F2F2;
+	}
+
+	.connector {
+		stroke-width: 0.025cm;
+		stroke: #000000;
+		fill: #FFFFFF;
+	}
+
+	]]>
+</style>
+<g>
+<rect class="genericsBox" x="6.34804cm" y="0.5cm" width="1.66155cm" height="1cm" />
+<text class="generics" x="6.47304cm" y="0.875cm" >n = 4</text>
+<text class="generics" x="6.47304cm" y="1.375cm" >m = 9</text>
+</g>
+<g>
+<rect class="labelBox" x="1.5cm" y="0.5cm" width="4.84804cm" height="1cm" />
+<text class="label center" x="3.92402cm" y="1cm" ></text>
+<rect class="entityBox" x="1.475cm" y="1.475cm" width="4.89804cm" height="4.05cm" />
+<text class="entity center" x="3.92402cm" y="2cm" >cntdnmodm</text>
+<rect class="portBox" x="1.5cm" y="2.5cm" width="2.42402cm" height="1cm" />
+<text class="port left" x="1.75cm" y="3cm" >en_pi</text>
+<line class="connector" x1="1.5cm" y1="3cm" x2="0.5cm" y2="3cm" />
+<rect class="portBox" x="3.92402cm" y="2.5cm" width="2.42402cm" height="1cm" />
+<text class="port right" x="6.09804cm" y="3cm" >count_o</text>
+<line class="connector" x1="6.34804cm" y1="3cm" x2="7.34804cm" y2="3cm" />
+<line class="connector" x1="6.59804cm" y1="3.25cm" x2="7.09804cm" y2="2.75cm" />
+<text class="vector left" x="6.74804cm" y="2.6cm" >n</text>
+<rect class="portBox" x="3.92402cm" y="3.5cm" width="2.42402cm" height="1cm" />
+<text class="port right" x="6.09804cm" y="4cm" >tc_o</text>
+<line class="connector" x1="6.34804cm" y1="4cm" x2="7.34804cm" y2="4cm" />
+<rect class="portBox" x="1.5cm" y="4.5cm" width="4.84804cm" height="1cm" />
+<text class="port center" x="3.92402cm" y="5cm" >rst_ni</text>
+<line class="connector" x1="3.92402cm" y1="5.5cm" x2="3.92402cm" y2="6.5cm" />
+<circle class="connector" cx="3.92402cm" cy="5.675cm" r="0.125cm" />
+<rect class="portBox" x="1.5cm" y="3.5cm" width="2.42402cm" height="1cm" />
+<text class="port left" x="1.75cm" y="4cm" >clk_i</text>
+<line class="connector" x1="0.5cm" y1="4cm" x2="1.5cm" y2="4cm" />
+<line class="connector" x1="1.5cm" y1="4.15cm" x2="1.7cm" y2="4cm" />
+<line class="connector" x1="1.5cm" y1="3.85cm" x2="1.7cm" y2="4cm" />
+</g>
+</svg>

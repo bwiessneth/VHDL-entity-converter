@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smil="urn:oasis:names:tc:opendocument:xmlns:smil-compatible:1.0" xmlns:anim="urn:oasis:names:tc:opendocument:xmlns:animation:1.0" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:officeooo="http://openoffice.org/2009/office" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:css3t="http://www.w3.org/TR/css3-text/" office:version="1.2" office:mimetype="application/vnd.oasis.opendocument.graphics">
+<office:styles>
+<draw:marker draw:name="Arrow" svg:viewBox="0 0 20 30" svg:d="m10 0-10 30h20z"/>
+<style:style style:name="standard" style:family="graphic">
+<style:graphic-properties draw:stroke="solid" svg:stroke-width="0cm" svg:stroke-color="#808080" draw:marker-start-width="0.2cm" draw:marker-start-center="false" draw:marker-end-width="0.2cm" draw:marker-end-center="false" draw:fill="solid" draw:fill-color="#cfe7f5" draw:textarea-horizontal-align="justify" fo:padding-top="0.125cm" fo:padding-bottom="0.125cm" fo:padding-left="0.25cm" fo:padding-right="0.25cm" draw:shadow="hidden" draw:shadow-offset-x="0.2cm" draw:shadow-offset-y="0.2cm" draw:shadow-color="#808080">
+</style:graphic-properties>
+<style:paragraph-properties fo:margin-left="0cm" fo:margin-right="0cm" fo:margin-top="0cm" fo:margin-bottom="0cm" fo:line-height="100%" fo:text-indent="0cm"/>
+<style:text-properties style:use-window-font-color="true" style:text-outline="false" style:text-line-through-style="none" fo:font-family="Arial" style:font-family-generic="roman" style:font-pitch="variable" fo:font-size="18pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:letter-kerning="true" style:font-family-asian="&apos;Microsoft YaHei&apos;" style:font-family-generic-asian="system" style:font-pitch-asian="variable" style:font-size-asian="18pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-family-complex="Mangal" style:font-family-generic-complex="system" style:font-pitch-complex="variable" style:font-size-complex="18pt" style:font-style-complex="normal" style:font-weight-complex="normal" style:text-emphasize="none" style:font-relief="none" style:text-overline-style="none" style:text-overline-color="font-color"/>
+</style:style>
+</office:styles>
+ <office:automatic-styles>
+  <!-- page layout -->
+  <style:page-layout style:name="PM0">
+   <style:page-layout-properties fo:margin-top="0cm" fo:margin-bottom="0cm" fo:margin-left="0cm" fo:margin-right="0cm" fo:page-width="8.50959cm" fo:page-height="7cm" style:print-orientation="portrait"/>
+  </style:page-layout>
+  <!-- page style ?? -->
+  <style:style style:name="dp1" style:family="drawing-page">
+   <style:drawing-page-properties draw:background-size="border" draw:fill="none"/>
+  </style:style>
+  <!-- page style ?? -->
+  <style:style style:name="dp2" style:family="drawing-page"/>
+<!-- Shape formats -->
+<!-- Bounding box -->
+<style:style style:name="entity" style:family="graphic" style:parent-style-name="standard">
+<style:graphic-properties svg:stroke-width="0.05cm" draw:stroke="solid" svg:stroke-color="#000000" draw:fill="solid" draw:fill-color="#FFFFFF" draw:textarea-horizontal-align="justify" draw:textarea-vertical-align="top" draw:auto-grow-height="false" />
+</style:style>
+<!-- port box -->
+<style:style style:name="port" style:family="graphic" style:parent-style-name="standard">
+<style:graphic-properties svg:stroke-width="0.00cm" draw:stroke="none" svg:stroke-color="#FFF" draw:fill="none" draw:fill-color="#FFFFFF" draw:textarea-horizontal-align="justify" draw:textarea-vertical-align="middle" draw:auto-grow-height="false" />
+</style:style>
+<!-- Connector -->
+<style:style style:name="connector" style:family="graphic" style:parent-style-name="standard">
+<style:graphic-properties svg:stroke-width="0.025cm" draw:stroke="solid" svg:stroke-color="#000000" draw:fill="solid" draw:fill-color="#FFFFFF" draw:textarea-horizontal-align="justify" draw:textarea-vertical-align="middle" draw:auto-grow-height="false" />
+</style:style>
+<!-- Label box -->
+<style:style style:name="label" style:family="graphic" style:parent-style-name="standard">
+<style:graphic-properties svg:stroke-width="0.00cm" draw:stroke="none" svg:stroke-color="#000000" draw:fill="none" draw:fill-color="#FFFFFF" draw:textarea-horizontal-align="justify" draw:textarea-vertical-align="middle" draw:auto-grow-height="false" />
+</style:style>
+<!-- VectorLength box -->
+<style:style style:name="vectorLength" style:family="graphic" style:parent-style-name="standard">
+<style:graphic-properties svg:stroke-width="0.00cm" draw:stroke="none" draw:fill="none" draw:textarea-horizontal-align="justify" draw:textarea-vertical-align="middle" draw:auto-grow-height="false" />
+</style:style>
+<!-- Generic box -->
+<style:style style:name="generics" style:family="graphic" style:parent-style-name="standard">
+<style:graphic-properties svg:stroke-width="0.02cm" draw:stroke="solid" svg:stroke-color="#BFBFBF" draw:fill="solid" draw:fill-color="#F2F2F2" draw:textarea-horizontal-align="justify" draw:textarea-vertical-align="start" draw:auto-grow-height="false" />
+</style:style>
+<!-- Generic box -->
+<style:style style:name="genericSignal" style:family="graphic" style:parent-style-name="standard">
+<style:graphic-properties svg:stroke-width="0.00cm" draw:stroke="none" svg:stroke-color="#C2C2C2" draw:fill="none" draw:fill-color="#FFFFFF" draw:textarea-horizontal-align="justify" draw:textarea-vertical-align="middle" draw:auto-grow-height="false" />
+</style:style>
+<!-- Text styles -->
+<!-- label -->
+<style:style style:name="tlabel" style:family="paragraph">
+<style:paragraph-properties fo:text-align="center"/>
+<style:text-properties fo:font-family="Courier New" fo:font-size="10pt" style:font-size-asian="10pt" style:font-size-complex="10pt" fo:font-weight="normal"/>
+</style:style>
+<!-- Entity -->
+<style:style style:name="tentity" style:family="paragraph">
+<style:paragraph-properties fo:text-align="center"/>
+<style:text-properties fo:font-family="Arial" fo:font-size="12pt" style:font-size-asian="12pt" style:font-size-complex="12pt" fo:font-weight="bold"/>
+</style:style>
+<!-- Left side port -->
+<style:style style:name="tlsport" style:family="paragraph">
+<style:paragraph-properties fo:text-align="start"/>
+<style:text-properties fo:font-family="Arial" fo:font-size="12pt" style:font-size-asian="12pt" style:font-size-complex="12pt" fo:font-weight="normal"/>
+</style:style>
+<!-- Right side port -->
+<style:style style:name="trsport" style:family="paragraph">
+<style:paragraph-properties fo:text-align="end"/>
+<style:text-properties fo:font-family="Arial" fo:font-size="12pt" style:font-size-asian="12pt" style:font-size-complex="12pt" fo:font-weight="normal"/>
+</style:style>
+<!-- Center port -->
+<style:style style:name="tcport" style:family="paragraph">
+<style:paragraph-properties fo:text-align="center"/>
+<style:text-properties fo:font-family="Arial" fo:font-size="12pt" style:font-size-asian="12pt" style:font-size-complex="12pt" fo:font-weight="normal"/>
+</style:style>
+<!-- Vector length left side -->
+<style:style style:name="vector_centered" style:family="paragraph">
+<style:paragraph-properties fo:text-align="center"/>
+<style:text-properties fo:font-family="Arial" fo:font-size="10pt" style:font-size-asian="10pt" style:font-size-complex="10pt" fo:font-weight="normal"/>
+</style:style>
+<!-- Vector length left side -->
+<style:style style:name="vectorls" style:family="paragraph">
+<style:paragraph-properties fo:text-align="end"/>
+<style:text-properties fo:font-family="Arial" fo:font-size="10pt" style:font-size-asian="10pt" style:font-size-complex="10pt" fo:font-weight="normal"/>
+</style:style>
+<!-- Vector length right side -->
+<style:style style:name="vectorrs" style:family="paragraph">
+<style:paragraph-properties fo:text-align="start"/>
+<style:text-properties fo:font-family="Arial" fo:font-size="10pt" style:font-size-asian="10pt" style:font-size-complex="10pt" fo:font-weight="normal"/>
+</style:style>
+<!-- generics length right side -->
+<style:style style:name="generics" style:family="paragraph">
+<style:paragraph-properties fo:text-align="start"/>
+<style:text-properties fo:font-family="Arial" fo:font-size="10pt" style:font-size-asian="10pt" style:font-size-complex="10pt" fo:font-weight="normal"/>
+</style:style>
+</office:automatic-styles>
+<office:master-styles>
+<draw:layer-set>
+<draw:layer draw:name="layout"/>
+<draw:layer draw:name="background"/>
+<draw:layer draw:name="backgroundobjects"/>
+<draw:layer draw:name="controls"/>
+<draw:layer draw:name="measurelines"/>
+</draw:layer-set>
+<style:master-page style:name="Standard" style:page-layout-name="PM0" draw:style-name="dp1"/>
+</office:master-styles>
+<office:body>
+<office:drawing>
+<draw:page draw:name="page1" draw:style-name="dp1" draw:master-page-name="Standard">
+<draw:g>
+	<draw:custom-shape draw:style-name = "generics" draw:text-style-name = "generics" draw:layer = "layout" svg:width = "1.66155cm"  svg:height = "1cm" svg:x = "6.34804cm" svg:y = "0.5cm">
+		<text:p text:style-name = "generics"><text:span text:style-name = "generics"></text:span></text:p>
+		<draw:enhanced-geometry svg:viewBox = "0 0 500 500" draw:mirror-horizontal = "false" draw:mirror-vertical = "false" draw:type = "rectangle" draw:enhanced-path = "M 0 0 L 500 0 500 500 0 500 0 0 Z N"/>
+	</draw:custom-shape>
+	<draw:custom-shape draw:style-name = "genericSignal" draw:text-style-name = "generics" draw:layer = "layout" svg:width = "1.66155cm"  svg:height = "0.5cm" svg:x = "6.34804cm" svg:y = "0.5cm">
+		<text:p text:style-name = "generics"><text:span text:style-name = "generics">n = 4</text:span></text:p>
+		<draw:enhanced-geometry svg:viewBox = "0 0 500 500" draw:mirror-horizontal = "false" draw:mirror-vertical = "false" draw:type = "rectangle" draw:enhanced-path = "M 0 0 L 500 0 500 500 0 500 0 0 Z N"/>
+	</draw:custom-shape>
+	<draw:custom-shape draw:style-name = "genericSignal" draw:text-style-name = "generics" draw:layer = "layout" svg:width = "1.66155cm"  svg:height = "0.5cm" svg:x = "6.34804cm" svg:y = "1cm">
+		<text:p text:style-name = "generics"><text:span text:style-name = "generics">m = 9</text:span></text:p>
+		<draw:enhanced-geometry svg:viewBox = "0 0 500 500" draw:mirror-horizontal = "false" draw:mirror-vertical = "false" draw:type = "rectangle" draw:enhanced-path = "M 0 0 L 500 0 500 500 0 500 0 0 Z N"/>
+	</draw:custom-shape>
+</draw:g>
+<draw:g>
+	<draw:custom-shape draw:style-name = "label" draw:text-style-name = "tlabel" draw:layer = "layout" svg:width = "4.84804cm"  svg:height = "1cm" svg:x = "1.5cm" svg:y = "0.5cm">
+		<text:p text:style-name = "tlabel"><text:span text:style-name = "tlabel"></text:span></text:p>
+		<draw:enhanced-geometry svg:viewBox = "0 0 500 500" draw:mirror-horizontal = "false" draw:mirror-vertical = "false" draw:type = "rectangle" draw:enhanced-path = "M 0 0 L 500 0 500 500 0 500 0 0 Z N"/>
+	</draw:custom-shape>
+	<draw:custom-shape draw:style-name = "entity" draw:text-style-name = "tentity" draw:layer = "layout" svg:width = "4.84804cm"  svg:height = "4cm" svg:x = "1.5cm" svg:y = "1.5cm">
+		<text:p text:style-name = "tentity"><text:span text:style-name = "tentity">cntdnmodm</text:span></text:p>
+		<draw:enhanced-geometry svg:viewBox = "0 0 500 500" draw:mirror-horizontal = "false" draw:mirror-vertical = "false" draw:type = "rectangle" draw:enhanced-path = "M 0 0 L 500 0 500 500 0 500 0 0 Z N"/>
+	</draw:custom-shape>
+	<draw:glue-point draw:id = "4" svg:x = "0cm" svg:y = "-0cm" />
+	<draw:custom-shape draw:style-name = "port" draw:text-style-name = "tlsport" draw:layer = "layout" svg:width = "2.42402cm"  svg:height = "1cm" svg:x = "1.5cm" svg:y = "2.5cm">
+		<text:p text:style-name = "tlsport"><text:span text:style-name = "tlsport">en_pi</text:span></text:p>
+		<draw:enhanced-geometry svg:viewBox = "0 0 500 500" draw:mirror-horizontal = "false" draw:mirror-vertical = "false" draw:type = "rectangle" draw:enhanced-path = "M 0 0 L 500 0 500 500 0 500 0 0 Z N"/>
+	</draw:custom-shape>
+	<draw:line draw:style-name = "connector" draw:layer = "layout" svg:x1 = "0.5cm" svg:y1 = "3cm" svg:x2 = "1.5cm" svg:y2 = "3cm">
+		<text:p/>
+	</draw:line>
+	<draw:glue-point draw:id = "5" svg:x = "-5cm" svg:y = "-0.833333cm" />
+	<draw:custom-shape draw:style-name = "port" draw:text-style-name = "trsport" draw:layer = "layout" svg:width = "2.42402cm"  svg:height = "1cm" svg:x = "3.92402cm" svg:y = "2.5cm">
+		<text:p text:style-name = "trsport"><text:span text:style-name = "trsport">count_o</text:span></text:p>
+		<draw:enhanced-geometry svg:viewBox = "0 0 500 500" draw:mirror-horizontal = "false" draw:mirror-vertical = "false" draw:type = "rectangle" draw:enhanced-path = "M 0 0 L 500 0 500 500 0 500 0 0 Z N"/>
+	</draw:custom-shape>
+	<draw:line draw:style-name = "connector" draw:layer = "layout" svg:x1 = "6.34804cm" svg:y1 = "3cm" svg:x2 = "7.34804cm" svg:y2 = "3cm">
+		<text:p/>
+	</draw:line>
+	<draw:line draw:style-name = "connector" draw:layer = "layout" svg:x1 = "6.59804cm" svg:y1 = "3.25cm" svg:x2 = "7.09804cm" svg:y2 = "2.75cm">
+		<text:p/>
+	</draw:line>
+	<draw:custom-shape draw:style-name = "vectorLength" draw:text-style-name = "vector_centered" draw:layer = "layout" svg:width = "1cm"  svg:height = "1cm" svg:x = "6.34804cm" svg:y = "2.1cm">
+		<text:p text:style-name = "vector_centered"><text:span text:style-name = "vector_centered">n</text:span></text:p>
+		<draw:enhanced-geometry svg:viewBox = "0 0 500 500" draw:mirror-horizontal = "false" draw:mirror-vertical = "false" draw:type = "rectangle" draw:enhanced-path = "M 0 0 L 500 0 500 500 0 500 0 0 Z N"/>
+	</draw:custom-shape>
+	<draw:glue-point draw:id = "6" svg:x = "5cm" svg:y = "-0.833333cm" />
+	<draw:custom-shape draw:style-name = "port" draw:text-style-name = "trsport" draw:layer = "layout" svg:width = "2.42402cm"  svg:height = "1cm" svg:x = "3.92402cm" svg:y = "3.5cm">
+		<text:p text:style-name = "trsport"><text:span text:style-name = "trsport">tc_o</text:span></text:p>
+		<draw:enhanced-geometry svg:viewBox = "0 0 500 500" draw:mirror-horizontal = "false" draw:mirror-vertical = "false" draw:type = "rectangle" draw:enhanced-path = "M 0 0 L 500 0 500 500 0 500 0 0 Z N"/>
+	</draw:custom-shape>
+	<draw:line draw:style-name = "connector" draw:layer = "layout" svg:x1 = "6.34804cm" svg:y1 = "4cm" svg:x2 = "7.34804cm" svg:y2 = "4cm">
+		<text:p/>
+	</draw:line>
+	<draw:glue-point draw:id = "7" svg:x = "5cm" svg:y = "0.833333cm" />
+	<draw:custom-shape draw:style-name = "port" draw:text-style-name = "tcport" draw:layer = "layout" svg:width = "4.84804cm"  svg:height = "1cm" svg:x = "1.5cm" svg:y = "4.5cm">
+		<text:p text:style-name = "tcport"><text:span text:style-name = "tcport">rst_ni</text:span></text:p>
+		<draw:enhanced-geometry svg:viewBox = "0 0 500 500" draw:mirror-horizontal = "false" draw:mirror-vertical = "false" draw:type = "rectangle" draw:enhanced-path = "M 0 0 L 500 0 500 500 0 500 0 0 Z N"/>
+	</draw:custom-shape>
+	<draw:line draw:style-name = "connector" draw:layer = "layout" svg:x1 = "3.92402cm" svg:y1 = "5.5cm" svg:x2 = "3.92402cm" svg:y2 = "6.5cm">
+		<text:p/>
+	</draw:line>
+	<draw:custom-shape draw:style-name="connector" draw:layer = "layout" svg:width="0.25cm" svg:height="0.25cm" svg:x="3.79902cm" svg:y="5.5cm">
+		<draw:enhanced-geometry draw:type="ellipse" draw:enhanced-path="U 10800 10800 10800 10800 0 360 Z N"/>
+	</draw:custom-shape>
+	<draw:glue-point draw:id = "8" svg:x = "0cm" svg:y = "5cm" />
+	<draw:custom-shape draw:style-name = "port" draw:text-style-name = "tlsport" draw:layer = "layout" svg:width = "2.42402cm"  svg:height = "1cm" svg:x = "1.5cm" svg:y = "3.5cm">
+		<text:p text:style-name = "tlsport"><text:span text:style-name = "tlsport">clk_i</text:span></text:p>
+		<draw:enhanced-geometry svg:viewBox = "0 0 500 500" draw:mirror-horizontal = "false" draw:mirror-vertical = "false" draw:type = "rectangle" draw:enhanced-path = "M 0 0 L 500 0 500 500 0 500 0 0 Z N"/>
+	</draw:custom-shape>
+	<draw:line draw:style-name = "connector" draw:layer = "layout" svg:x1 = "0.5cm" svg:y1 = "4cm" svg:x2 = "1.5cm" svg:y2 = "4cm">
+		<text:p/>
+	</draw:line>
+	<draw:line draw:style-name = "connector" draw:layer = "layout" svg:x1 = "1.5cm" svg:y1 = "4.15cm" svg:x2 = "1.7cm" svg:y2 = "4cm">
+		<text:p/>
+	</draw:line>
+	<draw:line draw:style-name = "connector" draw:layer = "layout" svg:x1 = "1.5cm" svg:y1 = "3.85cm" svg:x2 = "1.7cm" svg:y2 = "4cm">
+		<text:p/>
+	</draw:line>
+	<draw:glue-point draw:id = "9" svg:x = "-5cm" svg:y = "0.833333cm" />
+</draw:g>
+</draw:page>
+</office:drawing>
+</office:body>
+</office:document>
