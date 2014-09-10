@@ -19,7 +19,7 @@ src/DWMarkup.cpp \
 src/Markdown.cpp \
 src/LaTeX.cpp \
 src/OutputGenerator.cpp \
-src/vec.cpp
+src/VEC.cpp
 
 # Build $(OBJS)
 OBJS=$(patsubst src%.cpp,build%.o, $(SRC))
@@ -31,7 +31,7 @@ else
 BIN = bin/VEC
 endif
 
-all: vec
+all: VEC
 
 # Create build directory
 $(OBJS): | build
@@ -43,7 +43,7 @@ build/%.o: src/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Build executable
-vec: $(OBJS)
+VEC: $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(BIN) $(OBJS)	
 
 # Remove all intermediate files

@@ -30,7 +30,7 @@
 \***************************************************************************/
 
 
-#include "vec.h"
+#include "VEC.h"
 #include "MSG.h"
 #include "Config.h"
 #include "tools.h"
