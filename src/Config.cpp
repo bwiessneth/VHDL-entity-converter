@@ -165,7 +165,7 @@ std::string Config::configurationKeys[][2] = {
 
 
 // Initialize global Config object
-Config cfg("VEC.conf");
+Config cfg("vec.conf");
 
 
 Config::Config(std::string fileName)
