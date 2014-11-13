@@ -69,7 +69,6 @@ void FODG::initValues()
 	fixedWidth = cfg.getDouble("fixedWidth");
 	horizontal_Margin = cfg.getDouble("horizontal_Margin");
 	vertical_Margin = cfg.getDouble("vertical_Margin");
-	double strokeWidth = cfg.getDouble("entity.strokeWidth");		
 	//	labelBox_visible = cfg.getBool("labelBox_visible");
 
 	int noInputs = mSourceEntity.getNumberOfInputs();
@@ -326,11 +325,7 @@ void FODG::translate()
 				if (mSourceEntity.getVectorLength(i) >= 0)
 				{
 					sWriter.line(currentX - 0.75, currentY + noInputs + 1.75, currentX - 0.25, currentY + noInputs + 1.25, "connector");
-
-					//if (calcTextWidth(mSourceEntity.getVectorStr(i).length(), fontSize) == 1.0)
-						sWriter.customShape(currentX - 1, currentY + noInputs + 0.6, 1, 1, mSourceEntity.getVectorStr(i), "vectorLength", "vector_centered");
-					//else
-						//sWriter.customShape(currentX - calcTextWidth(mSourceEntity.getVectorStr(i).length(), fontSize), currentY + noInputs + 0.6, calcTextWidth(mSourceEntity.getVectorStr(i).length(), fontSize), 1, mSourceEntity.getVectorStr(i), "vectorLength", "vectorls");
+					sWriter.customShape(currentX - 1, currentY + noInputs + 0.6, 1, 1, mSourceEntity.getVectorStr(i), "vectorLength", "vector_centered");
 				}
 
 				// Place glue point on calculated relative coordinates
@@ -356,16 +351,7 @@ void FODG::translate()
 			if (mSourceEntity.getVectorLength(i) >= 0)
 			{
 				sWriter.line(currentX + entityWidth + 0.25, currentY + noOutputs + 1.75, currentX + entityWidth + 0.75, currentY + noOutputs + 1.25, "connector");
-
-				// itoa (mSourceEntity.getVectorLength(i),buffer,10); // g++ compatibility
-				//sprintf(buffer,"%d",mSourceEntity.getVectorLength(i));
-
-				// sprintf(buffer,"%s",mSourceEntity.getVectorStr(i));
-				//sWriter.customShape(currentX+1+entityWidth+0.15,currentY+noOutputs+0.6,calcTextWidth(strlen(buffer),fontSize),1,buffer,"vectorLength","vectorrs");
-				//if (calcTextWidth(mSourceEntity.getVectorStr(i).length(), fontSize) == 1.0)
-					sWriter.customShape(currentX + entityWidth, currentY + noOutputs + 0.6, 1, 1, mSourceEntity.getVectorStr(i), "vectorLength", "vector_centered");
-				//else
-					//sWriter.customShape(currentX + entityWidth, currentY + noOutputs + 0.6, calcTextWidth(mSourceEntity.getVectorStr(i).length(), fontSize)-0.125, 1, mSourceEntity.getVectorStr(i), "vectorLength", "vectorrs");
+				sWriter.customShape(currentX + entityWidth, currentY + noOutputs + 0.6, 1, 1, mSourceEntity.getVectorStr(i), "vectorLength", "vector_centered");
 			}
 
 			// Place glue point on calculated relative coordinates
@@ -447,7 +433,8 @@ double FODG::calcTextWidth(int charCount, double fontSize){
 	if (charCount == 0)
 		return 0;
 
-	double width = ((lengthCoeff*charCount + lengthOffset)*fontSize + yOffset)*adjFactor;
+	double width = ((lengthCoeff*charCount + lengthOffset)*fontSize + yOffset) * adjFactor;
+	width = floor(width) + 0.5;
 
 	if (width < 1.0)
 		return 1.0;
