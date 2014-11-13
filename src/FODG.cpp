@@ -186,7 +186,7 @@ void FODG::initValues()
 
 	// Calculate origins of the drawing. These coordinates are used for glue points
 	// Half the group height
-	originY = groupHeight / 2;
+	originY = (groupHeight) / 2;
 
 	// Two connectors on each side + rectangle width
 	groupWidth = (2 + entityWidth);
@@ -205,6 +205,7 @@ void FODG::translate()
 
 	double currentX = 0;
 	double currentY = 0;
+	double strokeWidth = cfg.getDouble("entity.strokeWidth");	
 
 	stringstream ss;
 	FODGWriter sWriter(mOutputFile);
@@ -324,12 +325,7 @@ void FODG::translate()
 				if (mSourceEntity.getVectorLength(i) >= 0)
 				{
 					sWriter.line(currentX - 0.75, currentY + noInputs + 1.75, currentX - 0.25, currentY + noInputs + 1.25, "connector");
-
-
-					if (calcTextWidth(mSourceEntity.getVectorStr(i).length(), fontSize) == 1.0)
-						sWriter.customShape(currentX - 1, currentY + noInputs + 0.6, 1, 1, mSourceEntity.getVectorStr(i), "vectorLength", "vector_centered");
-					else
-						sWriter.customShape(currentX - calcTextWidth(mSourceEntity.getVectorStr(i).length(), fontSize), currentY + noInputs + 0.6, calcTextWidth(mSourceEntity.getVectorStr(i).length(), fontSize), 1, mSourceEntity.getVectorStr(i), "vectorLength", "vectorls");
+					sWriter.customShape(currentX - 1, currentY + noInputs + 0.6, 1, 1, mSourceEntity.getVectorStr(i), "vectorLength", "vector_centered");
 				}
 
 				// Place glue point on calculated relative coordinates
@@ -355,16 +351,7 @@ void FODG::translate()
 			if (mSourceEntity.getVectorLength(i) >= 0)
 			{
 				sWriter.line(currentX + entityWidth + 0.25, currentY + noOutputs + 1.75, currentX + entityWidth + 0.75, currentY + noOutputs + 1.25, "connector");
-
-				// itoa (mSourceEntity.getVectorLength(i),buffer,10); // g++ compatibility
-				//sprintf(buffer,"%d",mSourceEntity.getVectorLength(i));
-
-				// sprintf(buffer,"%s",mSourceEntity.getVectorStr(i));
-				//sWriter.customShape(currentX+1+entityWidth+0.15,currentY+noOutputs+0.6,calcTextWidth(strlen(buffer),fontSize),1,buffer,"vectorLength","vectorrs");
-				if (calcTextWidth(mSourceEntity.getVectorStr(i).length(), fontSize) == 1.0)
-					sWriter.customShape(currentX + entityWidth, currentY + noOutputs + 0.6, 1, 1, mSourceEntity.getVectorStr(i), "vectorLength", "vector_centered");
-				else
-					sWriter.customShape(currentX + entityWidth, currentY + noOutputs + 0.6, calcTextWidth(mSourceEntity.getVectorStr(i).length(), fontSize), 1, mSourceEntity.getVectorStr(i), "vectorLength", "vectorrs");
+				sWriter.customShape(currentX + entityWidth, currentY + noOutputs + 0.6, 1, 1, mSourceEntity.getVectorStr(i), "vectorLength", "vector_centered");
 			}
 
 			// Place glue point on calculated relative coordinates
@@ -386,7 +373,7 @@ void FODG::translate()
 		sWriter.customShape(currentX, currentY + entityHeight, 2 * portWidth, 1, mSourceEntity.getPortName(resetPort), "port", "tcport");
 		sWriter.line(currentX + portWidth, currentY + entityHeight + 1, currentX + portWidth, currentY + entityHeight + 2, "connector");
 		if (mSourceEntity.getLOWActive(resetPort) == true)
-			sWriter.circle(currentX + portWidth, currentY + entityHeight + 1 + 0.125, 0.25, "connector");
+			sWriter.circle(currentX + portWidth, currentY + entityHeight + 1 + 0.125 + strokeWidth, 0.25, "connector");
 		sWriter.gluePoint(0, 5);
 
 		// clock port
@@ -446,7 +433,8 @@ double FODG::calcTextWidth(int charCount, double fontSize){
 	if (charCount == 0)
 		return 0;
 
-	double width = ((lengthCoeff*charCount + lengthOffset)*fontSize + yOffset)*adjFactor;
+	double width = ((lengthCoeff*charCount + lengthOffset)*fontSize + yOffset) * adjFactor;
+	width = floor(width) + 0.5;
 
 	if (width < 1.0)
 		return 1.0;
