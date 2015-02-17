@@ -26,7 +26,7 @@
 	END cntdnmodm;
 
 ##### FODG file
-![Generated FODG file](https://git.etech.fh-augsburg.de/benjamin.wiessneth/vhdl-opendocument-generator-vog/raw/master/doc/cntdnmodm_label.png "Generated FODG file")
+![Generated FODG file](http://bwiessneth.github.io/VHDL-entity-converter/cntdnmodm.png "Generated FODG file")
 
 ##### DokuWiki markup
 	^ Name    ^ Type                 ^  Direction  ^  Polarity  ^ Description ^
