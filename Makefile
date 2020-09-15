@@ -55,3 +55,6 @@ clean:
 .PHONY: uninstall
 uninstall:
 	rm -rf $(BIN)
+
+format:
+	clang-format -i src/*
