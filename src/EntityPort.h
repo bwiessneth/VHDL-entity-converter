@@ -11,8 +11,8 @@
 *	Description: Represents the smallest possible unit of a VHDLEntity,
 *	a single port.
 *	Each port has a name, type, direction, and polarity.
-*	Depending on it's constructor call it may defined as a clock or reset port.
-*	A vector length may also be passed.
+*	Depending on it's constructor call it may defined as a clock or reset
+port. *	A vector length may also be passed.
 *
 *****************************************************************************
 *
@@ -26,12 +26,11 @@
 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 *	GNU General Public License for more details.
-*	
+*
 *	You should have received a copy of the GNU General Public License
 *	along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 \***************************************************************************/
-
 
 #ifndef ENTITYPORT_H
 #define ENTITYPORT_H
@@ -40,103 +39,122 @@
 
 class EntityPort
 {
-public:	
-	enum portDirections {NONE, IN, OUT, INOUT, BUFFER, LINKAGE};	// enum for possible directions of a single port
-	static const std::string portDirectionsLabels[];						// captions for the direction enum
+public:
+  enum portDirections
+  {
+    NONE,
+    IN,
+    OUT,
+    INOUT,
+    BUFFER,
+    LINKAGE
+  }; // enum for possible directions of a single port
+  static const std::string
+    portDirectionsLabels[]; // captions for the direction enum
 
-	//TODO: portTypes will be discontinued
-	enum portTypes {NA, LOGIC, VECTOR};								// enum for possible types of a single port
-	static const std::string portTypesLabels[];							// captions for the type enum
+  // TODO: portTypes will be discontinued
+  enum portTypes
+  {
+    NA,
+    LOGIC,
+    VECTOR
+  }; // enum for possible types of a single port
+  static const std::string portTypesLabels[]; // captions for the type enum
 
-	// Creates an EntityPort object with no contents	
-	EntityPort();
+  // Creates an EntityPort object with no contents
+  EntityPort();
 
-	// Creates an EntityPort object with given parameters
-	EntityPort(std::string portLabel, std::string portTypeStr, portDirections portDirection, bool isClock, bool isReset, int vectorLength, bool LOWActive);
+  // Creates an EntityPort object with given parameters
+  EntityPort(std::string portLabel,
+             std::string portTypeStr,
+             portDirections portDirection,
+             bool isClock,
+             bool isReset,
+             int vectorLength,
+             bool LOWActive);
 
-	// Sets the port label of the current object
-	void setPortLabel(std::string portLabel);
-	
-	// Sets the port direction of the current object
-	void setPortDirection(portDirections portDirection);
+  // Sets the port label of the current object
+  void setPortLabel(std::string portLabel);
 
-	// Defines the port object as a clock port
-	void setClock(bool isClock);
+  // Sets the port direction of the current object
+  void setPortDirection(portDirections portDirection);
 
-	// Defines the port object as a reset port
-	void setReset(bool isReset);
+  // Defines the port object as a clock port
+  void setClock(bool isClock);
 
-	// Prints some information
-	// The information is formatted like this:
-	// portLabel portDirection* portDirection portType* portType isClock isReset
-	void printPortInfo();
+  // Defines the port object as a reset port
+  void setReset(bool isReset);
 
-	// Returns the port direction
-	portDirections getPortDirection();
-	
-	// Returns the clock property
-	bool getClock();
-	
-	// Returns the reset property
-	bool getReset();
+  // Prints some information
+  // The information is formatted like this:
+  // portLabel portDirection* portDirection portType* portType isClock isReset
+  void printPortInfo();
 
-	// Returns character pointer to the port name
-	std::string getPortLabel();
+  // Returns the port direction
+  portDirections getPortDirection();
 
-	// Returns the vector property
-	bool getVector();
+  // Returns the clock property
+  bool getClock();
 
-	// Returns the vector length
-	int getVectorLength();
-	
-	// Returns the vector start value
-	int getVectorStart();
+  // Returns the reset property
+  bool getReset();
 
-	// Returns the vector end value
-	int getVectorEnd();
+  // Returns character pointer to the port name
+  std::string getPortLabel();
 
-	// Set the vector start value
-	void setVectorStart(int start);
+  // Returns the vector property
+  bool getVector();
 
-	// Set the vector end value
-	void setVectorEnd(int end);
+  // Returns the vector length
+  int getVectorLength();
 
-	// Get the port polarity
-	bool getLOWActive();	
+  // Returns the vector start value
+  int getVectorStart();
 
-	// Get the port type string
-	std::string getPortType();
-	
-	std::string getVectorStr();
+  // Returns the vector end value
+  int getVectorEnd();
 
-	void setVectorStr(std::string vStr);
+  // Set the vector start value
+  void setVectorStart(int start);
 
-	void setVectorStartStr(std::string vS);
+  // Set the vector end value
+  void setVectorEnd(int end);
 
-	void setVectorEndStr(std::string vE);
+  // Get the port polarity
+  bool getLOWActive();
 
-	std::string getVectorStartStr();
+  // Get the port type string
+  std::string getPortType();
 
-	std::string getVectorEndStr();
+  std::string getVectorStr();
 
-	std::string getVectorRawStr();
+  void setVectorStr(std::string vStr);
+
+  void setVectorStartStr(std::string vS);
+
+  void setVectorEndStr(std::string vE);
+
+  std::string getVectorStartStr();
+
+  std::string getVectorEndStr();
+
+  std::string getVectorRawStr();
 
 private:
-	std::string portLabel;		// Name
-	std::string portTypeStr;	// Type as a string
-	portTypes portType;	    	// Type as enum
-	portDirections portDirection;	// Direction as enum
-	bool isClock;			// Clock flag
-	bool isReset;			// Reset flag
-	bool isVector;			// Vector flag
-	int vectorLength;		// vector length
-	int vectorStart;		// vector start value
-	int vectorEnd;			// vector end value
-	std::string vectorStr;
-	std::string vStart;
-	std::string vEnd;
-	bool LOWActive;			// polarity flag
+  std::string portLabel;        // Name
+  std::string portTypeStr;      // Type as a string
+  portTypes portType;           // Type as enum
+  portDirections portDirection; // Direction as enum
+  bool isClock;                 // Clock flag
+  bool isReset;                 // Reset flag
+  bool isVector;                // Vector flag
+  int vectorLength;             // vector length
+  int vectorStart;              // vector start value
+  int vectorEnd;                // vector end value
+  std::string vectorStr;
+  std::string vStart;
+  std::string vEnd;
+  bool LOWActive; // polarity flag
 };
-
 
 #endif

@@ -23,89 +23,84 @@
 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 *	GNU General Public License for more details.
-*	
+*
 *	You should have received a copy of the GNU General Public License
 *	along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 \***************************************************************************/
 
-
 #include "VEC.h"
-#include "MSG.h"
 #include "Config.h"
-#include "tools.h"
-#include "VHDLParser.h"
+#include "MSG.h"
 #include "OutputGenerator.h"
+#include "VHDLParser.h"
+#include "tools.h"
 
 #include <vector>
 
-int main(int argc, const char* argv[])
+int
+main(int argc, const char* argv[])
 {
-	// Create vector of strings to hold input filenames
-	std::vector<std::string> inputFiles;
+  // Create vector of strings to hold input filenames
+  std::vector<std::string> inputFiles;
 
-	// If no input file was specified print VEC info dialog
-	if (argc <= 1)
-	{
-		printInfo();
+  // If no input file was specified print VEC info dialog
+  if (argc <= 1) {
+    printInfo();
 
-		// Exit
-		return 0;
-	}
-	// Parse programm options for custom switches and input filenames	
-	else if (parseArgv(argc, argv, inputFiles) != 0) 
-	{
-		// Error while parsing programm options, or help option was set
-		if (cfg.getBool("VEC.printHelp"))
-		{
-			printHelp();
-		}
+    // Exit
+    return 0;
+  }
+  // Parse programm options for custom switches and input filenames
+  else if (parseArgv(argc, argv, inputFiles) != 0) {
+    // Error while parsing programm options, or help option was set
+    if (cfg.getBool("VEC.printHelp")) {
+      printHelp();
+    }
 
-		// Print no more error as this already happened in parseArgv(). Exit
-		return 1;
-	}
-	// Valid programm options and at least one source file
-	else
-	{
-		MSG(GROUP::INFO) << "Verbose mode";
+    // Print no more error as this already happened in parseArgv(). Exit
+    return 1;
+  }
+  // Valid programm options and at least one source file
+  else {
+    MSG(GROUP::INFO) << "Verbose mode";
 
-		for (unsigned int i = 0; i < inputFiles.size(); i++)
-		{
-			// Check if input argument has a vhdl extension
-			if (validFileExtension(inputFiles[i]) == true)
-			{
-				MSG(GROUP::DEFAULT) << "Parsing " << inputFiles[i];
+    for (unsigned int i = 0; i < inputFiles.size(); i++) {
+      // Check if input argument has a vhdl extension
+      if (validFileExtension(inputFiles[i]) == true) {
+        MSG(GROUP::DEFAULT) << "Parsing " << inputFiles[i];
 
-				// Create parser object and parse the given source file
-				VHDLParser myParser(inputFiles[i]);
+        // Create parser object and parse the given source file
+        VHDLParser myParser(inputFiles[i]);
 
-				// Set the entity label. It's either provided via command line or defined in VEC.conf
-				myParser.setEntityLabel(cfg.getString("default_label"));
+        // Set the entity label. It's either provided via command line or
+        // defined in VEC.conf
+        myParser.setEntityLabel(cfg.getString("default_label"));
 
-				// Check if parsed entity has ports
-				if ((myParser.getEntity().getNumberOfInputs() == 0) && (myParser.getEntity().getNumberOfOutputs() == 0))
-				{
-					MSG(GROUP::ERROR) << "Parsed VHDL entity has no valid ports.";
-				}
-				else
-				{
-					// Print short overview of parsed vhdl entity when verbose mode is active
-					myParser.printResults();
+        // Check if parsed entity has ports
+        if ((myParser.getEntity().getNumberOfInputs() == 0) &&
+            (myParser.getEntity().getNumberOfOutputs() == 0)) {
+          MSG(GROUP::ERROR) << "Parsed VHDL entity has no valid ports.";
+        } else {
+          // Print short overview of parsed vhdl entity when verbose mode is
+          // active
+          myParser.printResults();
 
-					MSG(GROUP::DEFAULT) << "Generating output files";
+          MSG(GROUP::DEFAULT) << "Generating output files";
 
-					// Create a OutputGenerator object which takes care of creating the output files
-					OutputGenerator mOutputGenerator(inputFiles[i], myParser.getEntity());
-				}
-			}
-			else
-			{
-				// Print message if input file is no valid vhdl file
-				MSG(GROUP::ERROR) << inputFiles[i] << " has no valid vhd extension. Supported extensions are .vhd and .vhdl";
-			}
-		}
-	}
+          // Create a OutputGenerator object which takes care of creating the
+          // output files
+          OutputGenerator mOutputGenerator(inputFiles[i], myParser.getEntity());
+        }
+      } else {
+        // Print message if input file is no valid vhdl file
+        MSG(GROUP::ERROR) << inputFiles[i]
+                          << " has no valid vhd extension. Supported "
+                             "extensions are .vhd and .vhdl";
+      }
+    }
+  }
 
-	MSG(GROUP::DEFAULT) << "Done";
-	return 0;
+  MSG(GROUP::DEFAULT) << "Done";
+  return 0;
 }

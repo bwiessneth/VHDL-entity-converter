@@ -23,12 +23,11 @@
 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 *	GNU General Public License for more details.
-*	
+*
 *	You should have received a copy of the GNU General Public License
 *	along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 \***************************************************************************/
-
 
 #ifndef OUTPUTGENERATOR_H
 #define OUTPUTGENERATOR_H
@@ -37,21 +36,22 @@
 class OutputGenerator
 {
 public:
-	OutputGenerator(std::string sourcePath, VHDLEntity sourceEntity);
-	
+  OutputGenerator(std::string sourcePath, VHDLEntity sourceEntity);
+
 private:
-	void generateFODG();	// Generate FODG file
-	void generateSVG();		// Generate SVG file
-	void generatePNG();		// Generate PNG file
-	void generateDokuWikiMarkup();	// Generate DokuWiki table
-	void generateMarkdown();	// Generate Makrdown table
-	void generateLaTeX();	// Generate LaTeX table
+  void generateFODG();           // Generate FODG file
+  void generateSVG();            // Generate SVG file
+  void generatePNG();            // Generate PNG file
+  void generateDokuWikiMarkup(); // Generate DokuWiki table
+  void generateMarkdown();       // Generate Makrdown table
+  void generateLaTeX();          // Generate LaTeX table
 
-	std::string getOutputPath(std::string filePath);	// Helper function to get path from source file
+  std::string getOutputPath(
+    std::string filePath); // Helper function to get path from source file
 
-	VHDLEntity mSourceEntity;
-	std::string mSourceName;
-	std::string mSourcePath;
+  VHDLEntity mSourceEntity;
+  std::string mSourceName;
+  std::string mSourcePath;
 };
 
 #endif

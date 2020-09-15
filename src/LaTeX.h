@@ -36,21 +36,28 @@
 class LaTeX : OFileHandler
 {
 private:
-	void getMaxTextLengths();	// Get the maximum text lengths for each column in order to align the table content
-	void writeCell(colNames column, std::string text, std::string prefix, std::string suffix, std::string fillChar = " ", bool formatting = false);	// Write a text field to the output file
-	
-	void getTable();	// Write LaTeX table code into output file
-	void getHeaderPorts();	// Generate the table header for the IO ports
-	void getHeaderGenerics();	// Generate the table header for the generic signals
-	void getPorts();	// Generate table for the IO ports
-	void getGenerics();	// Generate table for the generic signals
+  void getMaxTextLengths(); // Get the maximum text lengths for each column in
+                            // order to align the table content
+  void writeCell(
+    colNames column,
+    std::string text,
+    std::string prefix,
+    std::string suffix,
+    std::string fillChar = " ",
+    bool formatting = false); // Write a text field to the output file
 
-	std::string Polarity(int i);	// Get polarity string of required port
-	std::string Direction(int i);	// Get direction string of required port
-	std::string Type(int i);	// Get type string of required port
+  void getTable();          // Write LaTeX table code into output file
+  void getHeaderPorts();    // Generate the table header for the IO ports
+  void getHeaderGenerics(); // Generate the table header for the generic signals
+  void getPorts();          // Generate table for the IO ports
+  void getGenerics();       // Generate table for the generic signals
+
+  std::string Polarity(int i);  // Get polarity string of required port
+  std::string Direction(int i); // Get direction string of required port
+  std::string Type(int i);      // Get type string of required port
 
 public:
-	LaTeX(VHDLEntity sourceEntity);
+  LaTeX(VHDLEntity sourceEntity);
 };
 
 #endif

@@ -22,50 +22,58 @@
 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 *	GNU General Public License for more details.
-*	
+*
 *	You should have received a copy of the GNU General Public License
 *	along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 \***************************************************************************/
 
-
 #ifndef TOOLS_H
 #define TOOLS_H
 
-#include <string>
 #include <stdio.h>
+#include <string>
 #include <vector>
 
-extern std::string configFile;		// Path of the config file
-extern std::string entityLabel;		// Label for the parsed entity
+extern std::string configFile;           // Path of the config file
+extern std::string entityLabel;          // Label for the parsed entity
 extern std::string output_path_dokuwiki; // Path for doku wiki files
-extern std::string output_path_svg; // Path for converted svg files
-extern std::string output_path_png; // Path for converted png files
-extern std::string baseDirectory; // Directory from where the executable is launched
+extern std::string output_path_svg;      // Path for converted svg files
+extern std::string output_path_png;      // Path for converted png files
+extern std::string
+  baseDirectory; // Directory from where the executable is launched
 
 // Checks extension from given file name for valid vhdl extension
-bool validFileExtension(std::string fileName);
+bool
+validFileExtension(std::string fileName);
 
 // Extracts extension from given file name
-const char *getFileNameExtension(const char *fileName);
+const char*
+getFileNameExtension(const char* fileName);
 
 // Checks passed path for trailing backslash and removes it
-std::string cleanPath(std::string Path);
+std::string
+cleanPath(std::string Path);
 
 // Check programm arguments for programm options and source files
-int parseArgv(int argc, const char* argv[], std::vector<std::string>& fList);
+int
+parseArgv(int argc, const char* argv[], std::vector<std::string>& fList);
 
 // Print info dialog
-void printInfo();
+void
+printInfo();
 
 // Print help dialog
-void printHelp();
+void
+printHelp();
 
 // Print license dialog
-void printLicense();
+void
+printLicense();
 
+void
+replaceAll(std::string& str, const std::string& from, const std::string& to);
 
-void replaceAll(std::string& str, const std::string& from, const std::string& to);
-
-std::string replaceStr(std::string source, std::string from, std::string to);
+std::string
+replaceStr(std::string source, std::string from, std::string to);
 #endif

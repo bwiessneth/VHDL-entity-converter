@@ -22,24 +22,25 @@
 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 *	GNU General Public License for more details.
-*	
+*
 *	You should have received a copy of the GNU General Public License
 *	along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 \***************************************************************************/
 
-
 #include "MSG.h"
 #include "VEC.h"
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 
 int MSG::MsgGroup = GROUP::DEFAULT;
 int MSG::DebugLevel = DEBUG::NONE;
-int MSG::_MsgGroupTreshold = GROUP::WARNING;	// Set default to show Info, Warning, and Error messages
-int MSG::DebugLevelTreshold = DEBUG::NONE;		// Display no debug messages per default
+int MSG::_MsgGroupTreshold =
+  GROUP::WARNING; // Set default to show Info, Warning, and Error messages
+int MSG::DebugLevelTreshold =
+  DEBUG::NONE; // Display no debug messages per default
 
 bool MSG::validOutput = false;
 bool MSG::noLabel = false;
@@ -48,109 +49,112 @@ bool MSG::printLabelOnce = false;
 // Deconstructor
 MSG::~MSG()
 {
-	// Check if valid output was created
-	if (validOutput)
-	{
-		// Clear output stream
-		std::cout << std::endl << std::flush;
-		
-		// Reset flag
-		validOutput = false;
-	}
+  // Check if valid output was created
+  if (validOutput) {
+    // Clear output stream
+    std::cout << std::endl << std::flush;
+
+    // Reset flag
+    validOutput = false;
+  }
 }
 
 // Constructor
 MSG::MSG(int group, int level)
 {
-	MSG::MsgGroup = group;		// Remember constructor call parameter for operator<< function
-	MSG::DebugLevel = level;	// Remember constructor call parameter for operator<< function
-	
-	// Check if current message passes threshold
-	if (MsgGroup <= _MsgGroupTreshold)
-	{
-		// Check if no label is desired
-		if (MSG::noLabel)
-		{
-			validOutput = true;
-		}
-		else
-		{	
-			// Print message group label 
-			switch (MsgGroup)
-			{
-				case GROUP::DEFAULT:
-					validOutput = true;
-					break;
-				case GROUP::ERROR:
-					std::cout << std::setw(10) << std::left << "[Error] ";
-					validOutput = true;
-					break;
-				case GROUP::WARNING:
-					std::cout << std::setw(10) << std::left << "[Warning] ";
-					validOutput = true;
-					break;
-				case GROUP::INFO:
-					std::cout << std::setw(10) << std::left << "[Info] ";
-					validOutput = true;
-					break;
-				case GROUP::DEBUG:
-					// Check if current message passes debug filter
-					if (((DebugLevelTreshold & (1 << (level - 1))) >= 1) || level == DEBUG::NONE)
-					{
-						std::cout << std::setw(10) << std::left << "[Debug] ";
-						validOutput = true;
-					}					
-					break;
-			}
-		}
-	}		
+  MSG::MsgGroup =
+    group; // Remember constructor call parameter for operator<< function
+  MSG::DebugLevel =
+    level; // Remember constructor call parameter for operator<< function
+
+  // Check if current message passes threshold
+  if (MsgGroup <= _MsgGroupTreshold) {
+    // Check if no label is desired
+    if (MSG::noLabel) {
+      validOutput = true;
+    } else {
+      // Print message group label
+      switch (MsgGroup) {
+        case GROUP::DEFAULT:
+          validOutput = true;
+          break;
+        case GROUP::ERROR:
+          std::cout << std::setw(10) << std::left << "[Error] ";
+          validOutput = true;
+          break;
+        case GROUP::WARNING:
+          std::cout << std::setw(10) << std::left << "[Warning] ";
+          validOutput = true;
+          break;
+        case GROUP::INFO:
+          std::cout << std::setw(10) << std::left << "[Info] ";
+          validOutput = true;
+          break;
+        case GROUP::DEBUG:
+          // Check if current message passes debug filter
+          if (((DebugLevelTreshold & (1 << (level - 1))) >= 1) ||
+              level == DEBUG::NONE) {
+            std::cout << std::setw(10) << std::left << "[Debug] ";
+            validOutput = true;
+          }
+          break;
+      }
+    }
+  }
 }
 
 // Suppress message group label
-void MSG::suppressLabel(bool quiet)
+void
+MSG::suppressLabel(bool quiet)
 {
-	if (quiet)
-		noLabel = true;
-	else
-		noLabel = false;
+  if (quiet)
+    noLabel = true;
+  else
+    noLabel = false;
 }
 
 // Set global message level
-void MSG::setMsgLevel(int level)
+void
+MSG::setMsgLevel(int level)
 {
-	// Output has to be created by hand
-	std::cout << std::setw(10) << std::left<< "[Info] " << "Set MsgGroupTreshold to " << level << std::endl;
-	
-	// Set global message threshold
-	_MsgGroupTreshold = level;
+  // Output has to be created by hand
+  std::cout << std::setw(10) << std::left << "[Info] "
+            << "Set MsgGroupTreshold to " << level << std::endl;
 
-	// Check for invalid levels
-	if (_MsgGroupTreshold < -1)
-		_MsgGroupTreshold = -1;
+  // Set global message threshold
+  _MsgGroupTreshold = level;
+
+  // Check for invalid levels
+  if (_MsgGroupTreshold < -1)
+    _MsgGroupTreshold = -1;
 }
 
 // Set global debug filter
-void MSG::setDebugLevel(int level)
+void
+MSG::setDebugLevel(int level)
 {
-	// Output has to be created by hand
-	std::cout << std::setw(10) << std::left << "[Info] " << "Set DebugLevelTreshold to " << level << std::endl;
+  // Output has to be created by hand
+  std::cout << std::setw(10) << std::left << "[Info] "
+            << "Set DebugLevelTreshold to " << level << std::endl;
 
-	// Set global debug filter
-	DebugLevelTreshold = level;
+  // Set global debug filter
+  DebugLevelTreshold = level;
 
-	// Check for invalid filter
-	if (DebugLevelTreshold < -1)
-		DebugLevelTreshold = -1;
+  // Check for invalid filter
+  if (DebugLevelTreshold < -1)
+    DebugLevelTreshold = -1;
 }
 
 // Return global message level
-int MSG::getMsgLevel()
+int
+MSG::getMsgLevel()
 {
-	return _MsgGroupTreshold;
+  return _MsgGroupTreshold;
 }
 
 // Return global debug filter
-int MSG::getDebugLevel()
+int
+MSG::getDebugLevel()
 {
-	return DebugLevelTreshold;
+  return DebugLevelTreshold;
 }

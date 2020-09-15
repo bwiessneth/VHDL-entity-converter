@@ -36,35 +36,35 @@
 class SVG : OFileHandler
 {
 private:
-	void initValues();
-	void translate();
-	double calcTextWidth(int charCount, double fontSize);
+  void initValues();
+  void translate();
+  double calcTextWidth(int charCount, double fontSize);
 
-	double entityHeight;
-	double entityWidth;
-	double groupHeight;
-	double groupWidth;
-	double originX;
-	double originY;
-	double portWidth;
-	double genericWidth;
-	double genericHeight;
-	double fontSize;
-	double generics_fontSize;
-	double entity_fontSize;
-	double fixedWidth;
-	std::string clockName;
-	std::string resetName;
-	int clockPort;
-	int resetPort;
-	//	std::string default_label;
-	double horizontal_Margin;
-	double vertical_Margin;
-	double vectorTextLenghtIn;
-	double vectorTextLenghtOut;
+  double entityHeight;
+  double entityWidth;
+  double groupHeight;
+  double groupWidth;
+  double originX;
+  double originY;
+  double portWidth;
+  double genericWidth;
+  double genericHeight;
+  double fontSize;
+  double generics_fontSize;
+  double entity_fontSize;
+  double fixedWidth;
+  std::string clockName;
+  std::string resetName;
+  int clockPort;
+  int resetPort;
+  //	std::string default_label;
+  double horizontal_Margin;
+  double vertical_Margin;
+  double vectorTextLenghtIn;
+  double vectorTextLenghtOut;
 
 public:
-	SVG(VHDLEntity sourceEntity);
+  SVG(VHDLEntity sourceEntity);
 };
 
 #endif
