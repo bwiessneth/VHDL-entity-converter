@@ -331,7 +331,7 @@ printInfo()
 #else
   MSG(GROUP::DEFAULT) << "E.g. \"./VEC rs_ff.vhd\"";
 #endif
-  MSG(GROUP::DEFAULT) << "For further information call VEC with \"-help\".";
+  MSG(GROUP::DEFAULT) << "For further information call VEC with \"--help\".";
 }
 
 // Print the help dialog
