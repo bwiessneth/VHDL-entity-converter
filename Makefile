@@ -44,6 +44,7 @@ build/%.o: src/%.cpp
 
 # Build executable
 VEC: $(OBJS)
+	[ -d "bin" ] || mkdir bin
 	$(CXX) $(CXXFLAGS) -o $(BIN) $(OBJS)	
 
 # Remove all intermediate files
