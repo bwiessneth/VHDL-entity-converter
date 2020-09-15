@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++0x -Wall
+CXXFLAGS=-Wall
 
 # Add source files to $(SRC)
 SRC = \
