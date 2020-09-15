@@ -32,6 +32,7 @@
 #include "Config.h"
 #include "FODGWriter.h"
 #include "MSG.h"
+#include <math.h>
 
 FODG::FODG(VHDLEntity sourceEntity)
   : OFileHandler(sourceEntity, "FODG", "fodg", "")
