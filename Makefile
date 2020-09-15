@@ -57,5 +57,8 @@ clean:
 uninstall:
 	rm -rf $(BIN)
 
+install:
+	./install.sh
+
 format:
 	clang-format -i src/*
