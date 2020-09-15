@@ -218,7 +218,7 @@ parseArgv(int argc, const char* argv[], std::vector<std::string>& fList)
       readDBGLevel = true;
       readOptionValue = true;
       continue;
-    } else if ((strcmp(argv[currentArgCounter], "-help") == 0) ||
+    } else if ((strcmp(argv[currentArgCounter], "--help") == 0) ||
                (strcmp(argv[currentArgCounter], "-h") == 0) ||
                (strcmp(argv[currentArgCounter], "-?") == 0)) {
       printHelp = true;
