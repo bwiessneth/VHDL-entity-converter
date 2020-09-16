@@ -37,12 +37,14 @@
 #include <map>       // map type
 #include <sstream>   // File content buffer
 #include <string>    // std::string
+#include <vector>    // std::vec
 
 class Config
 {
 public:
   // Creates a config reader with given filename
   Config(std::string fileName);
+  Config(std::vector<std::string> fileNameList);
 
   // Reads bool value from given key.
   bool getBool(std::string key);

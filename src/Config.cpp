@@ -166,7 +166,14 @@ std::string Config::configurationKeys[][2] = {
 };
 
 // Initialize global Config object
-Config cfg("vec.conf");
+// First look for config in the work directory
+// Then in the home directory
+// Then in the AppImage directory
+// Then in the /etc/vec directory
+Config cfg(std::vector<std::string>({ "vec.conf",
+                                      "~/.config/vec.conf",
+                                      "$APPDIR/usr/share/vec/vec.conf",
+                                      "/etc/vec/vec.conf" }));
 
 Config::Config(std::string fileName)
 {
@@ -186,12 +193,60 @@ Config::Config(std::string fileName)
 
   // Check if buffer cF is valid
   if (cF.fail() || cF.bad() || cF.str().empty()) {
-    MSG(GROUP::WARNING) << "Can't open config file. Using default values.";
+    MSG(GROUP::WARNING) << "Can't open config file at \"" << fileName
+                        << "\". Using default values.";
   } else {
     // Update the default values with the values found in the config file
     readConfigValues();
     cF.clear();
   }
+}
+
+Config::Config(std::vector<std::string> fileNameList)
+{
+  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "Config(std::string fileName)";
+
+  // Fill configMap with all default keys and their values
+  setDefaultConfigValues();
+
+  // Load APPDIR env variable in order to properly run AppImages
+  const char* rawEnvAppDir = std::getenv("APPDIR");
+  std::string envAppDir;
+  if (rawEnvAppDir == NULL)
+    envAppDir = std::string("");
+  else
+    envAppDir = std::string(rawEnvAppDir);
+
+  for (std::string fileName : fileNameList) {
+
+    std::size_t appDirPos = fileName.find("$APPDIR");
+    if (appDirPos != std::string::npos) {
+      fileName.replace(appDirPos, 7, envAppDir);
+    }
+
+    // Create ifstream and open the requested file
+    std::ifstream f(fileName.c_str());
+    if (f) {
+      // Copy contents of ifstream to the buffer cF
+      cF << f.rdbuf();
+      // Close ifstream
+      f.close();
+    }
+
+    // Check if buffer cF is valid
+    if (!(cF.fail() || cF.bad() || cF.str().empty())) {
+      // Update the default values with the values found in the config file
+      readConfigValues();
+      cF.clear();
+
+      return;
+    }
+  }
+  MSG(GROUP::WARNING) << "Couldn't open config files at:";
+  for (std::string fileName : fileNameList) {
+    std::cout << " > " << fileName << std::endl;
+  }
+  MSG(GROUP::WARNING) << "Using default values.";
 }
 
 // Create configuration keys and assign the default values
