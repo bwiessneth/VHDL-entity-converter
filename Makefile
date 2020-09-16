@@ -50,15 +50,15 @@ VEC: $(OBJS)
 # Remove all intermediate files
 .PHONY: clean
 clean:
-	rm -rf $(OBJS) build\
+	rm -rf $(OBJS) *.AppImage AppDir bin build\
 
 # Remove binary
 .PHONY: uninstall
 uninstall:
-	rm -rf $(BIN)
+	./install.sh / --uninstall
 
 install:
-	./install.sh
+	./install.sh /
 
 format:
 	clang-format -i src/*
