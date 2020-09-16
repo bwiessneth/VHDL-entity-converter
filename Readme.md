@@ -11,7 +11,7 @@
 
     vec.exe cntdnmodm_rtl.vhd -l "Countdown" -d
 
-##### Source input
+#### Source input
 
 	ENTITY cntdnmodm IS
 		GENERIC (
@@ -25,10 +25,10 @@
 			tc_o    : OUT std_ulogic);
 	END cntdnmodm;
 
-##### FODG file
+#### FODG file
 ![Generated FODG file](http://bwiessneth.github.io/VHDL-entity-converter/cntdnmodm.png "Generated FODG file")
 
-##### DokuWiki markup
+#### DokuWiki markup
 	^ Name    ^ Type                 ^  Direction  ^  Polarity  ^ Description ^
 	| clk_i   | std_ulogic           |  IN         |  HIGH      |             |
 	| rst_ni  | std_ulogic           |  IN         |  LOW       |             |
@@ -41,7 +41,7 @@
 	| n    | natural | 4             |
 	| m    | natural | 9             |
 
-##### Markdown
+#### Markdown
 Syntax output
 
     | Name    | Type                 | Direction | Polarity | Description |
@@ -73,13 +73,13 @@ Rendered table (not working with this Gitlab version)
 | m    | natural | 9             |
 
 ## Usage
-##### Windows #####
+#### Windows
 Simply drag and drop one or several vhdl-files onto the executable or call the VEC executable with additional parameters from the command line.
 
-##### Unix #####
+#### Unix
 Call the VEC executable with parameter.
 
-## Command line arguments ###
+## Command line arguments
 
 **Note:** Commandline arguments always overwrite settings specified in vec.conf
 
@@ -106,8 +106,14 @@ Call the VEC executable with parameter.
 
 ## Customization
 
-Note: If no ```vec.conf``` file is present the default values will be used.
+VEC will first look for a `vec.conf` file in your current working directory. If it doesn't find anything it will look in `~/.config/vec.conf` and as a last attempt it will try to read the global config at `/etc/vec/vec.conf`
+
+If no `vec.conf` file is found the default values will be used.
 
 Feel free to edit vec.conf to match your needs. The configuration keys are pretty much self-explanatory.
 
 See the Wiki for more information.
+
+## Building
+
+Build information can be found in `INSTALL.md`
