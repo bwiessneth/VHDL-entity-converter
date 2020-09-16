@@ -263,7 +263,7 @@ SVGWriter::SVGStyles()
      << std::endl
      //	<< "\t\tstroke: " << cfg.getString("label.stroke") << ";" << std::endl
      //	<< "\t\tstroke: " << cfg.getString("label.strokeColor") << ";" <<
-     //std::endl
+     // std::endl
      //	<< "\t\tfill: " << cfg.getString("label.fill") << ";" << std::endl
      << "\t\tfill: " << cfg.getString("label.fillColor") << ";" << std::endl
      << "\t}" << std::endl
@@ -274,7 +274,7 @@ SVGWriter::SVGStyles()
      << "\t\tstroke-width: " << cfg.getString("generics.strokeWidth") << ";"
      << std::endl
      //	<< "\t\tstroke: " << cfg.getString("generics.stroke") << ";" <<
-     //std::endl
+     // std::endl
      << "\t\tstroke: " << cfg.getString("generics.strokeColor") << ";"
      << std::endl
      //	<< "\t\tfill: " << cfg.getString("generics.fill") << ";" << std::endl
@@ -287,7 +287,7 @@ SVGWriter::SVGStyles()
      << "\t\tstroke-width: " << cfg.getString("connector.strokeWidth") << ";"
      << std::endl
      //	<< "\t\tstroke: " << cfg.getString("connector.stroke") << ";" <<
-     //std::endl
+     // std::endl
      << "\t\tstroke: " << cfg.getString("connector.strokeColor") << ";"
      << std::endl
      //	<< "\t\tfill: " << cfg.getString("connector.fill") << ";" << std::endl

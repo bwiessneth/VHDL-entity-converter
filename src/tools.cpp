@@ -346,7 +346,7 @@ printHelp()
     << "Specify a VHD or VHDL as source file"
     << NL
     //<< std::setw(10) << std::left << "-c" << "Specify a config file to use" <<
-    //NL
+    // NL
     << std::setw(10) << std::left << "-l"
     << "Specify label for the VHDL entity" << NL << std::setw(10) << std::left
     << "-d"
