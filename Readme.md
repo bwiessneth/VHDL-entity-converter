@@ -106,11 +106,11 @@ Call the VEC executable with parameter.
 
 ## Customization
 
-VEC will first look for a `vec.conf` file in your current working directory. If it doesn't find anything it will look in `~/.config/vec.conf` and as a last attempt it will try to read the global config at `/etc/vec/vec.conf`
+VEC will first look for a `vec.conf` file in your current working directory. If it doesn't find anything it will look in `~/.config/vec.conf` and as a last attempt it will try to read the global config at `/etc/vec/vec.conf`.
 
 If no `vec.conf` file is found the default values will be used.
 
-Feel free to edit vec.conf to match your needs. The configuration keys are pretty much self-explanatory.
+Feel free to edit `vec.conf` to match your needs. The configuration keys are pretty much self-explanatory.
 
 See the Wiki for more information.
 
