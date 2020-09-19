@@ -12,7 +12,7 @@
 *	a single port.
 *	Each port has a name, type, direction, and polarity.
 *	Depending on it's constructor call it may defined as a clock or reset
-port. *	A vector length may also be passed.
+* port. A vector length may also be passed.
 *
 *****************************************************************************
 *
