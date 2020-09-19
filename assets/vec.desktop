@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=VEC
+Comment=VEC
+Exec=VEC %u
+Keywords=VHDL;
+Type=Application
+Categories=Development;
+Terminal=true
+NoDisplay=true
+Icon=vec

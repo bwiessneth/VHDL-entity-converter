@@ -23,56 +23,65 @@
 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 *	GNU General Public License for more details.
-*	
+*
 *	You should have received a copy of the GNU General Public License
 *	along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 \***************************************************************************/
 
-
 #ifndef OFILEHANDLER_H
 #define OFILEHANDLER_H
 
-#include "VHDLEntity.h"
 #include "EntityPort.h"
-#include <string>
+#include "VHDLEntity.h"
+#include "tools.h"
 #include <fstream>
 #include <ostream>
-#include "tools.h"
+#include <string>
 
-
-class OFileHandler {
+class OFileHandler
+{
 protected:
-	ofstream mOutputFile;
+  ofstream mOutputFile;
 
-	VHDLEntity mSourceEntity;
-	std::string mOutputDirectory;
-	std::string mOutputFileName;
-	std::string mOutputFilePath;
-	int createOutputDirectory();
-	std::string mConfigName;
-	std::string mExtension;
-	std::string mSuffix;
+  VHDLEntity mSourceEntity;
+  std::string mOutputDirectory;
+  std::string mOutputFileName;
+  std::string mOutputFilePath;
+  int createOutputDirectory();
+  std::string mConfigName;
+  std::string mExtension;
+  std::string mSuffix;
 
-	size_t colWidthName;
-	size_t colWidthType;
-	size_t colWidthDirection;
-	size_t colWidthPolarity;
-	size_t colWidthDescription;
-	size_t colWidthBlank;
-	size_t colWidthGenericName;
-	size_t colWidthGenericType;
-	size_t colWidthDefaultValue;
+  size_t colWidthName;
+  size_t colWidthType;
+  size_t colWidthDirection;
+  size_t colWidthPolarity;
+  size_t colWidthDescription;
+  size_t colWidthBlank;
+  size_t colWidthGenericName;
+  size_t colWidthGenericType;
+  size_t colWidthDefaultValue;
 
-	enum colNames
-	{
-		Name, Type, Direction, Polarity, Description, Blank, GenericName, GenericType, DefaultValue
-	};
+  enum colNames
+  {
+    Name,
+    Type,
+    Direction,
+    Polarity,
+    Description,
+    Blank,
+    GenericName,
+    GenericType,
+    DefaultValue
+  };
 
 public:
-	OFileHandler(VHDLEntity sourceEntity, std::string configName = "", std::string extension = "txt", std::string suffix = "");
-	~OFileHandler();
+  OFileHandler(VHDLEntity sourceEntity,
+               std::string configName = "",
+               std::string extension = "txt",
+               std::string suffix = "");
+  ~OFileHandler();
 };
-
 
 #endif
