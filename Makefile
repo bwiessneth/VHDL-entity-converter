@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++0x -Wall
+CXXFLAGS=-O2 -Wall
 
 # Add source files to $(SRC)
 SRC = \
@@ -44,14 +44,21 @@ build/%.o: src/%.cpp
 
 # Build executable
 VEC: $(OBJS)
+	[ -d "bin" ] || mkdir bin
 	$(CXX) $(CXXFLAGS) -o $(BIN) $(OBJS)	
 
 # Remove all intermediate files
 .PHONY: clean
 clean:
-	rm -rf $(OBJS) build\
+	rm -rf $(OBJS) *.AppImage AppDir bin build\
 
 # Remove binary
 .PHONY: uninstall
 uninstall:
-	rm -rf $(BIN)
+	./install.sh / --uninstall
+
+install:
+	./install.sh /
+
+format:
+	clang-format -i src/*

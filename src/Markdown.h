@@ -36,19 +36,24 @@
 class Markdown : OFileHandler
 {
 private:
-	void getMaxTextLengths();
-	void writeCell(colNames column, std::string text, std::string prefix, std::string suffix, std::string fillChar = " ", bool formatting = false);
-	
-	void getHeader();	// Generate the table header
-	void getRows();	// Generate the table content
-	void getGenerics();	// Generate seperate table for the generic signals
+  void getMaxTextLengths();
+  void writeCell(colNames column,
+                 std::string text,
+                 std::string prefix,
+                 std::string suffix,
+                 std::string fillChar = " ",
+                 bool formatting = false);
 
-	std::string Polarity(int i);	// Get polarity string of required port
-	std::string Direction(int i);	// Get direction string of required port
-	std::string Type(int i);	// Get type string of required port
+  void getHeader();   // Generate the table header
+  void getRows();     // Generate the table content
+  void getGenerics(); // Generate seperate table for the generic signals
+
+  std::string Polarity(int i);  // Get polarity string of required port
+  std::string Direction(int i); // Get direction string of required port
+  std::string Type(int i);      // Get type string of required port
 
 public:
-	Markdown(VHDLEntity sourceEntity);
+  Markdown(VHDLEntity sourceEntity);
 };
 
 #endif

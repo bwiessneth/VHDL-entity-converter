@@ -22,12 +22,11 @@
 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 *	GNU General Public License for more details.
-*	
+*
 *	You should have received a copy of the GNU General Public License
 *	along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 \***************************************************************************/
-
 
 #ifndef GENERICSIGNAL_H
 #define GENERICSIGNAL_H
@@ -35,39 +34,46 @@
 
 using namespace std;
 
-class GenericSignal {
-	public:
-		// Creates empty signal
-		GenericSignal();
-		// Creates signal from given parameters
-		GenericSignal(string genericName, string genericTypeStr, string defaultValue, bool isVector = false, int vectorLength = -1, std::string vectorStart = "", std::string vectorEnd = "");
-		// Returns stored generic name
-		string getGenericName();
-		// Returns stored generic type
-		string getGenericTypeStr();
-		// Returns if generic signal is a vector type
-		bool getIsVector();
-		// Returns vector length
-		int getVectorLength();
-		// Returns vector start value
-		int getVectorStart();
-		// Returns vector end value
-		int getVectorEnd();
-		// Returns signal default value
-		string getDefaultValue();
-		// Returns a string with all information about signal
-		string getGenericStr();
+class GenericSignal
+{
+public:
+  // Creates empty signal
+  GenericSignal();
+  // Creates signal from given parameters
+  GenericSignal(string genericName,
+                string genericTypeStr,
+                string defaultValue,
+                bool isVector = false,
+                int vectorLength = -1,
+                std::string vectorStart = "",
+                std::string vectorEnd = "");
+  // Returns stored generic name
+  string getGenericName();
+  // Returns stored generic type
+  string getGenericTypeStr();
+  // Returns if generic signal is a vector type
+  bool getIsVector();
+  // Returns vector length
+  int getVectorLength();
+  // Returns vector start value
+  int getVectorStart();
+  // Returns vector end value
+  int getVectorEnd();
+  // Returns signal default value
+  string getDefaultValue();
+  // Returns a string with all information about signal
+  string getGenericStr();
 
-	private:
-		string genericName;		// name
-		string genericTypeStr;	// type as a string
-		string defaultValue;		// default value as a string
-		bool isVector;			// vector flag
-		int vectorLength;		// vector length
-		int vectorStart;		// vector start value
-		int vectorEnd;			// vector end value
-		std::string vStart;
-		std::string vEnd;
+private:
+  string genericName;    // name
+  string genericTypeStr; // type as a string
+  string defaultValue;   // default value as a string
+  bool isVector;         // vector flag
+  int vectorLength;      // vector length
+  int vectorStart;       // vector start value
+  int vectorEnd;         // vector end value
+  std::string vStart;
+  std::string vEnd;
 };
 
 #endif
