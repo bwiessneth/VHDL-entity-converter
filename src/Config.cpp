@@ -171,9 +171,9 @@ std::string Config::configurationKeys[][2] = {
 // Then in the AppImage directory
 // Then in the /etc/vec directory
 Config cfg(std::vector<std::string>({ "vec.conf",
-                                      "~/.config/vec.conf",
-                                      "$APPDIR/usr/share/vec/vec.conf",
-                                      "/etc/vec/vec.conf" }));
+                                      "$HOME/.config/vec.conf",
+                                      "/etc/vec/vec.conf",
+                                      "$APPDIR/usr/share/vec/vec.conf" }));
 
 Config::Config(std::string fileName)
 {
@@ -218,11 +218,27 @@ Config::Config(std::vector<std::string> fileNameList)
   else
     envAppDir = std::string(rawEnvAppDir);
 
+  // Load HOME env variable in order to resolve $HOME path
+  const char* rawEnvHome = std::getenv("HOME");
+  std::string envHome;
+  if (rawEnvHome == NULL)
+    envHome = std::string("");
+  else
+    envHome = std::string(rawEnvHome);
+
+  // iterate over fileNameList
   for (std::string fileName : fileNameList) {
 
+    // Try to replace $APPDIR with actual path
     std::size_t appDirPos = fileName.find("$APPDIR");
     if (appDirPos != std::string::npos) {
       fileName.replace(appDirPos, 7, envAppDir);
+    }
+
+    // Try to replace $HOME with actual path
+    std::size_t homePos = fileName.find("$HOME");
+    if (homePos != std::string::npos) {
+      fileName.replace(homePos, 5, envHome);
     }
 
     // Create ifstream and open the requested file
