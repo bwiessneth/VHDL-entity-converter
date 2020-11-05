@@ -59,12 +59,12 @@ EntityPort::portDirections readPortDir;
 
 VHDLParser::~VHDLParser()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "VHDLParser::~VHDLParser()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "VHDLParser::~VHDLParser()";
 }
 
 VHDLParser::VHDLParser(std::string fileName)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "VHDLParser::VHDLParser(" << fileName << ")";
   clearBuffer();
 
@@ -95,11 +95,11 @@ VHDLParser::VHDLParser(std::string fileName)
 void
 VHDLParser::parseFile(std::string fileName)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "VHDLParser::parseFile(" << fileName << ")";
 
   if ((result.getNumberOfInputs()) || (result.getNumberOfOutputs()) > 0)
-    MSG(0) << "Parser - VHDLEnity result already contains data!";
+    MSG(LOG_LEVEL::WARNING) << "Parser - VHDLEnity result already contains data!";
 
   loadFile(fileName);
   // Init common vars
@@ -446,7 +446,7 @@ VHDLParser::parseFile(std::string fileName)
 void
 VHDLParser::loadFile(string fileName)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "VHDLParser::loadFile(" << fileName << ")";
   // load vhd source into global mSourceBuffer buffer
   std::ifstream ifs((char*)fileName.c_str());
@@ -458,7 +458,7 @@ VHDLParser::loadFile(string fileName)
 void
 VHDLParser::clearBuffer()
 {
-  // MSG(GROUP::DEBUG,DEBUG::FUNCTIONCALL) << "VHDLParser::clearBuffer()";
+  // MSG(LOG_LEVEL::DEBUG,DEBUG::FUNCTIONCALL) << "VHDLParser::clearBuffer()";
   mParserBuffer.clear();
 }
 
@@ -471,7 +471,7 @@ VHDLParser::printResults()
 void
 VHDLParser::appendPort()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "void VHDLParser::appendPort()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "void VHDLParser::appendPort()";
 
   bool checkClock = false;
   bool checkReset = false;
@@ -813,8 +813,9 @@ VHDLParser::matchGenerics()
       // declared with a variable name
       if ((result.getVectorStr(i) == result.getVectorRawStr(i)) &&
           (result.getVectorLength(i) == 0))
-        MSG(GROUP::WARNING) << "Found no matching generic signal for vector "
-                               "length. Using raw input.";
+        MSG(LOG_LEVEL::WARNING)
+          << "Found no matching generic signal for vector "
+             "length. Using raw input.";
     }
   }
 }

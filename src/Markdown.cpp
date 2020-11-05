@@ -35,11 +35,11 @@
 Markdown::Markdown(VHDLEntity sourceEntity)
   : OFileHandler(sourceEntity, "Markdown", "md", "markdown")
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "Markdown::Markdown(VHDLEntity sourceEntity)";
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mConfigName = " << mConfigName;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mExtension = " << mExtension;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mSuffix = " << mSuffix;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mConfigName = " << mConfigName;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mExtension = " << mExtension;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mSuffix = " << mSuffix;
 
   getMaxTextLengths();
 
@@ -55,7 +55,7 @@ Markdown::Markdown(VHDLEntity sourceEntity)
 std::string
 Markdown::Polarity(int i)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "Markdown::Polarity(int i)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "Markdown::Polarity(int i)";
 
   if (mSourceEntity.getLOWActive(i) == true) {
     return cfg.getString("Table.caption_LOWactive");
@@ -68,7 +68,7 @@ Markdown::Polarity(int i)
 std::string
 Markdown::Direction(int i)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "Markdown::Direction(int i)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "Markdown::Direction(int i)";
 
   return EntityPort::portDirectionsLabels[mSourceEntity.getPortdirection(i)];
 }
@@ -77,7 +77,7 @@ Markdown::Direction(int i)
 std::string
 Markdown::Type(int i)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "Markdown::Type(int i)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "Markdown::Type(int i)";
 
   return mSourceEntity.getPortTypeStr(i);
 }
@@ -86,7 +86,7 @@ Markdown::Type(int i)
 void
 Markdown::getGenerics()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "Markdown::getGenerics()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "Markdown::getGenerics()";
 
   if (mSourceEntity.getNumberOfGenerics() > 0) {
     // Build table headings
@@ -204,7 +204,7 @@ Markdown::getGenerics()
 void
 Markdown::getHeader()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "Markdown::getHeader()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "Markdown::getHeader()";
 
   mOutputFile << "|";
 
@@ -380,7 +380,7 @@ Markdown::getHeader()
 void
 Markdown::getRows()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "Markdown::getRows()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "Markdown::getRows()";
 
   // Get the number of ports
   int noPorts =
@@ -553,19 +553,20 @@ Markdown::getMaxTextLengths()
   colWidthDefaultValue += 2;
   colWidthGenericType += 2;
 
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "colWidthName = " << colWidthName;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "colWidthType = " << colWidthType;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "colWidthName = " << colWidthName;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "colWidthType = " << colWidthType;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthDirection = " << colWidthDirection;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "colWidthPolarity = " << colWidthPolarity;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
+    << "colWidthPolarity = " << colWidthPolarity;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthDescription = " << colWidthDescription;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "colWidthBlank = " << colWidthBlank;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "colWidthBlank = " << colWidthBlank;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthGenericName = " << colWidthGenericName;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthDefaultValue = " << colWidthDefaultValue;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthGenericType = " << colWidthGenericType;
 }
 
@@ -579,7 +580,7 @@ Markdown::writeCell(colNames column,
                     std::string fillChar,
                     bool formatting)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "TableGeneratorUtils::writeText(std::string text, std::string fillChar)";
 
   size_t textLength = 0;
@@ -625,22 +626,22 @@ Markdown::writeCell(colNames column,
     textLength += suffix.length();
 
     if (textLength < maxTextLength) {
-      MSG(GROUP::DEBUG, DEBUG::RESULT)
+      MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
         << "if (textLength + suffix.length() < maxTextLength)";
 
       for (size_t i = 0; i < maxTextLength - textLength; i++) {
-        MSG(GROUP::DEBUG, DEBUG::RESULT) << "fillChar";
+        MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "fillChar";
         mOutputFile << fillChar;
       }
     }
   } else {
     if (textLength < maxTextLength) {
-      MSG(GROUP::DEBUG, DEBUG::RESULT)
+      MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
         << "if (textLength + suffix.length() < maxTextLength)";
 
       for (size_t i = 0; i < maxTextLength - textLength - suffix.length();
            i++) {
-        MSG(GROUP::DEBUG, DEBUG::RESULT) << "fillChar";
+        MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "fillChar";
         mOutputFile << fillChar;
       }
     }

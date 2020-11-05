@@ -35,11 +35,11 @@
 DWMarkup::DWMarkup(VHDLEntity sourceEntity)
   : OFileHandler(sourceEntity, "DokuWiki", "txt", "markup")
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "DWMarkup::DWMarkup(VHDLEntity sourceEntity)";
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mConfigName = " << mConfigName;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mExtension = " << mExtension;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mSuffix = " << mSuffix;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mConfigName = " << mConfigName;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mExtension = " << mExtension;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mSuffix = " << mSuffix;
 
   getMaxTextLengths();
 
@@ -55,7 +55,7 @@ DWMarkup::DWMarkup(VHDLEntity sourceEntity)
 std::string
 DWMarkup::Polarity(int i)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "DWMarkup::Polarity(int i)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "DWMarkup::Polarity(int i)";
 
   if (mSourceEntity.getLOWActive(i) == true) {
     return cfg.getString("Table.caption_LOWactive");
@@ -68,7 +68,7 @@ DWMarkup::Polarity(int i)
 std::string
 DWMarkup::Direction(int i)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "DWMarkup::Direction(int i)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "DWMarkup::Direction(int i)";
 
   return EntityPort::portDirectionsLabels[mSourceEntity.getPortdirection(i)];
 }
@@ -77,7 +77,7 @@ DWMarkup::Direction(int i)
 std::string
 DWMarkup::Type(int i)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "DWMarkup::Type(int i)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "DWMarkup::Type(int i)";
 
   return mSourceEntity.getPortTypeStr(i);
 }
@@ -86,7 +86,7 @@ DWMarkup::Type(int i)
 void
 DWMarkup::getGenerics()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "DWMarkup::getGenerics()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "DWMarkup::getGenerics()";
 
   if (mSourceEntity.getNumberOfGenerics() > 0) {
     mOutputFile << std::endl;
@@ -207,7 +207,7 @@ DWMarkup::getGenerics()
 void
 DWMarkup::getHeader()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "DWMarkup::getHeader()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "DWMarkup::getHeader()";
 
   mOutputFile << "^";
   std::string tmpStr = "";
@@ -368,7 +368,7 @@ DWMarkup::getHeader()
 void
 DWMarkup::getRows()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "DWMarkup::getRows()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "DWMarkup::getRows()";
 
   // Get the number of ports
   int noPorts =
@@ -575,19 +575,20 @@ DWMarkup::getMaxTextLengths()
   colWidthDefaultValue += 2;
   colWidthGenericType += 2;
 
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "colWidthName = " << colWidthName;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "colWidthType = " << colWidthType;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "colWidthName = " << colWidthName;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "colWidthType = " << colWidthType;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthDirection = " << colWidthDirection;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "colWidthPolarity = " << colWidthPolarity;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
+    << "colWidthPolarity = " << colWidthPolarity;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthDescription = " << colWidthDescription;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "colWidthBlank = " << colWidthBlank;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "colWidthBlank = " << colWidthBlank;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthGenericName = " << colWidthGenericName;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthDefaultValue = " << colWidthDefaultValue;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthGenericType = " << colWidthGenericType;
 }
 
@@ -601,7 +602,7 @@ DWMarkup::writeCell(colNames column,
                     std::string fillChar,
                     bool formatting)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "TableGeneratorUtils::writeText(std::string text, std::string fillChar)";
 
   size_t textLength = 0;
@@ -647,22 +648,22 @@ DWMarkup::writeCell(colNames column,
     textLength += suffix.length();
 
     if (textLength < maxTextLength) {
-      MSG(GROUP::DEBUG, DEBUG::RESULT)
+      MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
         << "if (textLength + suffix.length() < maxTextLength)";
 
       for (size_t i = 0; i < maxTextLength - textLength; i++) {
-        MSG(GROUP::DEBUG, DEBUG::RESULT) << "fillChar";
+        MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "fillChar";
         mOutputFile << fillChar;
       }
     }
   } else {
     if (textLength < maxTextLength) {
-      MSG(GROUP::DEBUG, DEBUG::RESULT)
+      MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
         << "if (textLength + suffix.length() < maxTextLength)";
 
       for (size_t i = 0; i < maxTextLength - textLength - suffix.length();
            i++) {
-        MSG(GROUP::DEBUG, DEBUG::RESULT) << "fillChar";
+        MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "fillChar";
         mOutputFile << fillChar;
       }
     }

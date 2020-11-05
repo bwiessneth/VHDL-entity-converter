@@ -36,10 +36,11 @@
 SVG::SVG(VHDLEntity sourceEntity)
   : OFileHandler(sourceEntity, "SVG", "svg", "")
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "SVG::SVG(VHDLEntity sourceEntity)";
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mConfigName = " << mConfigName;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mExtension = " << mExtension;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mSuffix = " << mSuffix;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
+    << "SVG::SVG(VHDLEntity sourceEntity)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mConfigName = " << mConfigName;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mExtension = " << mExtension;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mSuffix = " << mSuffix;
 
   initValues();
   translate();
@@ -48,7 +49,7 @@ SVG::SVG(VHDLEntity sourceEntity)
 void
 SVG::initValues()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "SVG::initValues(VHDLEntity mSourceEntity)";
   // Initialize global variables
   groupHeight = 0;
@@ -204,7 +205,7 @@ SVG::initValues()
 void
 SVG::translate()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "SVG::translate()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "SVG::translate()";
 
   double currentX = 0;
   double currentY = 0;

@@ -46,11 +46,11 @@ OFileHandler::OFileHandler(VHDLEntity sourceEntity,
   , mExtension(extension)
   , mSuffix(suffix)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "OFileHandler::OFileHandler(VHDLEntity sourceEntity)";
-  // MSG(GROUP::DEBUG, DEBUG::RESULT) << "mConfigName = " << mConfigName;
-  // MSG(GROUP::DEBUG, DEBUG::RESULT) << "mExtension = " << mExtension;
-  // MSG(GROUP::DEBUG, DEBUG::RESULT) << "mSuffix = " << mSuffix;
+  // MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mConfigName = " << mConfigName;
+  // MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mExtension = " << mExtension;
+  // MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mSuffix = " << mSuffix;
 
   mOutputDirectory = cleanPath(cfg.getString(mConfigName + ".outputPath"));
 
@@ -77,9 +77,9 @@ OFileHandler::OFileHandler(VHDLEntity sourceEntity,
 
   createOutputDirectory();
 
-  // MSG(GROUP::INFO) << TAB << "filename = " << mOutputFileName;
-  // MSG(GROUP::INFO) << TAB << "directory = " << mOutputDirectory;
-  MSG(GROUP::INFO) << TAB << "filepath = " << mOutputFilePath;
+  // MSG(LOG_LEVEL::INFO) << TAB << "filename = " << mOutputFileName;
+  // MSG(LOG_LEVEL::INFO) << TAB << "directory = " << mOutputDirectory;
+  MSG(LOG_LEVEL::INFO) << TAB << "filepath = " << mOutputFilePath;
 
   mOutputFile.open((char*)mOutputFilePath.c_str());
 }
@@ -87,7 +87,7 @@ OFileHandler::OFileHandler(VHDLEntity sourceEntity,
 // Destructor
 OFileHandler::~OFileHandler()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "OFileHandler::~OFileHandler()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "OFileHandler::~OFileHandler()";
 
   mOutputFile.close();
 }
@@ -109,7 +109,7 @@ OFileHandler::createOutputDirectory()
   // Check if directory already exists
   struct stat st;
   if (stat((char*)(mOutputDirectory).c_str(), &st) == 0) {
-    MSG(GROUP::DEBUG) << "Output directory already exists";
+    MSG(LOG_LEVEL::DEBUG) << "Output directory already exists";
   } else {
     // Create new directory if required
     if (!mOutputDirectory.empty()) {
@@ -120,7 +120,7 @@ OFileHandler::createOutputDirectory()
       std::string cmd =
         "mkdir \"" + mOutputDirectory + "\" >/dev/null 2>/dev/null";
 #endif
-      MSG(GROUP::DEBUG, DEBUG::RESULT)
+      MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
         << "mkdir " << cmd << " = " << system(cmd.c_str());
     }
   }

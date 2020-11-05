@@ -53,17 +53,14 @@ VHDLEntity::VHDLEntity()
 void
 VHDLEntity::printEntityInfo()
 {
-  MSG(GROUP::INFO) << "Entity structure:";
-  MSG::suppressLabel(true);
-  MSG(GROUP::INFO) << INDENT << "Inputs: " << numberOfInputs << NL << INDENT
-                   << "Outputs: " << numberOfOutputs << NL << INDENT
-                   << "Generics: " << numberOfGenerics << NL << INDENT
-                   << "CLOCK: " << ((getClockPort() != -1) ? "true" : "false")
-                   << NL << INDENT
-                   << "RESET: " << ((getResetPort() != -1) ? "true" : "false");
-  MSG::suppressLabel(false);
-
-  return;
+  MSG(LOG_LEVEL::INFO) << "Entity structure:\n"
+                       << INDENT << "Inputs: " << numberOfInputs << NL << INDENT
+                       << "Outputs: " << numberOfOutputs << NL << INDENT
+                       << "Generics: " << numberOfGenerics << NL << INDENT
+                       << "CLOCK: "
+                       << ((getClockPort() != -1) ? "true" : "false") << NL
+                       << INDENT << "RESET: "
+                       << ((getResetPort() != -1) ? "true" : "false");
 }
 
 void

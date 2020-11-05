@@ -37,11 +37,11 @@
 FODG::FODG(VHDLEntity sourceEntity)
   : OFileHandler(sourceEntity, "FODG", "fodg", "")
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "FODG::FODG(VHDLEntity sourceEntity)";
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mConfigName = " << mConfigName;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mExtension = " << mExtension;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mSuffix = " << mSuffix;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mConfigName = " << mConfigName;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mExtension = " << mExtension;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mSuffix = " << mSuffix;
 
   initValues();
   translate();
@@ -50,7 +50,7 @@ FODG::FODG(VHDLEntity sourceEntity)
 void
 FODG::initValues()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "FODG::initValues(VHDLEntity mSourceEntity)";
   // Initialize global variables
   groupHeight = 0;
@@ -206,7 +206,7 @@ FODG::initValues()
 void
 FODG::translate()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "FODG::translate()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "FODG::translate()";
 
   // Relative coordinates for gluepoints
   // svg:y = (portY / (entityHeight/2) * resolution * direction) = (1.5cm / 4cm
