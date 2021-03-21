@@ -148,7 +148,7 @@ parseArgv(int argc, const char* argv[], std::vector<std::string>& fList)
     // Check if the current argv should be a option value
     if (readOptionValue && argv[currentArgCounter][0] == '-') {
       // Detected a new parameter instead => Error
-      MSG(GROUP::ERROR)
+      MSG(LOG_LEVEL::ERROR)
         << "Error in program arguments. Maybe missing a parameter? (Check "
         << argv[currentArgCounter - 1] << ")";
       return 1;
@@ -212,7 +212,7 @@ parseArgv(int argc, const char* argv[], std::vector<std::string>& fList)
       readOptionValue = true;
       continue;
     } else if (strcmp(argv[currentArgCounter], "-v") == 0) {
-      MSG::setMsgLevel(GROUP::INFO);
+      MSG::setLogLevel(LOG_LEVEL::INFO);
       continue;
     } else if (strcmp(argv[currentArgCounter], "-dbg") == 0) {
       readDBGLevel = true;
@@ -259,13 +259,27 @@ parseArgv(int argc, const char* argv[], std::vector<std::string>& fList)
     } else if (readDBGLevel) {
       readDBGLevel = false;
       readOptionValue = false;
-      MSG::setMsgLevel(GROUP::DEBUG);
+      MSG::setLogLevel();
       if (isdigit(argv[currentArgCounter][0])) {
-        MSG::setDebugLevel(atoi(argv[currentArgCounter]));
+        switch (atoi(argv[currentArgCounter])) {
+          case 0:
+            MSG::setLogLevel(LOG_LEVEL::ERROR);
+            break;
+          case 1:
+            MSG::setLogLevel(LOG_LEVEL::WARNING);
+            break;
+          case 2:
+            MSG::setLogLevel(LOG_LEVEL::INFO);
+            break;
+          case 3:
+            MSG::setLogLevel(LOG_LEVEL::DEBUG);
+            break;
+        }
       } else {
-        MSG(GROUP::WARNING) << "No valid debug level specified. Debug level = "
-                               "0 assumed. -dbg <NUMBER>";
-        MSG::setDebugLevel(DEBUG::NONE);
+        MSG(LOG_LEVEL::WARNING)
+          << "No valid debug level specified. Debug level = "
+             "0 assumed. -dbg <NUMBER>";
+        MSG::setLogLevel();
       }
     } else {
       // If no programm option was found the current argument is treated as a
@@ -276,14 +290,14 @@ parseArgv(int argc, const char* argv[], std::vector<std::string>& fList)
 
   // Check if a option value should be read, but no more argv exist => Error
   if (readOptionValue) {
-    MSG(GROUP::ERROR)
+    MSG(LOG_LEVEL::ERROR)
       << "Error in program arguments. Maybe missing a parameter? (Check "
       << argv[argc - 1] << ")";
     return 1;
   }
 
   // Display programm options as debug output
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "Program options: " << NL << INDENT << "-d "
     << (cfg.getBool("DokuWiki.enableExport") == true ? "true" : "false")
     << " -do \"" << cfg.getString("DokuWiki.outputPath") << "\"" << NL << INDENT
@@ -300,20 +314,19 @@ parseArgv(int argc, const char* argv[], std::vector<std::string>& fList)
     << " -to \"" << cfg.getString("LaTeX.outputPath") << "\"" << NL << INDENT
     << "-l \"" << entityLabel << "\"" << NL <<
     // INDENT << "-c \"" << configFile << "\"" << NL <<
-    INDENT << "-v " << (MSG::getMsgLevel() != -1 ? "true" : "false")
-    << " (MsgLevel = " << MSG::getMsgLevel() << ")" << NL << INDENT << "-dbg "
-    << (MSG::getDebugLevel() != -1 ? "true" : "false")
-    << " (DebugLevel = " << MSG::getDebugLevel() << ")";
+    INDENT << "-v "
+    << (MSG::getLogLevel() != LOG_LEVEL::ERROR ? "true" : "false")
+    << " (MsgLevel = " << MSG::getLogLevelAsInt() << ")" << NL << INDENT
+    << "-dbg " << (MSG::getDebugLevel() != DEBUG::NONE ? "true" : "false")
+    << " (DebugLevel = " << MSG::getDebugLevelAsInt() << ")";
 
   for (unsigned int i = 0; i < fList.size(); i++) {
-    MSG::suppressLabel(true);
-    MSG(GROUP::DEBUG, DEBUG::RESULT) << INDENT << "SOURCE " << fList[i];
-    MSG::suppressLabel(false);
+    MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << INDENT << "SOURCE " << fList[i];
   }
 
   // If no source filepath was found pop an error
   if ((fList.size() == 0) && !printHelp) {
-    MSG(GROUP::ERROR) << "Error in program arguments. Missing source file";
+    MSG(LOG_LEVEL::ERROR) << "Error in program arguments. Missing source file";
     return 1;
   }
 
@@ -324,28 +337,30 @@ parseArgv(int argc, const char* argv[], std::vector<std::string>& fList)
 void
 printInfo()
 {
-  MSG(GROUP::DEFAULT) << "This is VEC v" << VERSION;
-  MSG(GROUP::DEFAULT) << "To generate data please specify an input file.";
+  std::cout << "This is VEC v" << VERSION << std::endl;
+  std::cout << "To generate data please specify an input file." << std::endl;
 #ifdef _WIN32
-  MSG(GROUP::DEFAULT) << "E.g. \"VEC rs_ff.vhd\"";
+  std::cout << "E.g. \"VEC rs_ff.vhd\"" << std::endl;
 #else
-  MSG(GROUP::DEFAULT) << "E.g. \"./VEC rs_ff.vhd\"";
+  std::cout << "E.g. \"./VEC rs_ff.vhd\"" << std::endl;
 #endif
-  MSG(GROUP::DEFAULT) << "For further information call VEC with \"--help\".";
+  std::cout << "For further information call VEC with \"--help\"." << std::endl;
 }
 
 // Print the help dialog
 void
 printHelp()
 {
-  MSG(GROUP::DEFAULT) << "VEC SOURCE [-l label] [-d] [-do DWPath] [-f] [-fo "
-                         "FODGPath] [-m] [-mo MDPath] [-p] [-po PNGPath] [-s] "
-                         "[-so SVGPath] [-t] [-to LaTeXPath] [-v] [-dbg level]";
-  MSG(GROUP::DEFAULT)
+  std::cout << "VEC SOURCE [-l label] [-d] [-do DWPath] [-f] [-fo "
+               "FODGPath] [-m] [-mo MDPath] [-p] [-po PNGPath] [-s] "
+               "[-so SVGPath] [-t] [-to LaTeXPath] [-v] [-dbg level]"
+            << std::endl;
+  std::cout
     << NL << std::setw(10) << std::left << "SOURCE"
     << "Specify a VHD or VHDL as source file"
     << NL
-    //<< std::setw(10) << std::left << "-c" << "Specify a config file to use" <<
+    //<< std::setw(10) << std::left << "-c" << "Specify a config file to use"
+    //<<
     // NL
     << std::setw(10) << std::left << "-l"
     << "Specify label for the VHDL entity" << NL << std::setw(10) << std::left
@@ -380,7 +395,7 @@ printHelp()
 void
 printLicense()
 {
-  MSG(GROUP::DEFAULT)
+  std::cout
     << NL << "Copyright(C) 2014 University of Applied Sciences Augsburg" << NL
     << "                  Benjamin Wiessneth, Johann Faerber" << NL
     << "Email: benjamin.wiessneth@hs-augsburg.de" << NL
@@ -388,16 +403,7 @@ printLicense()
     << "VEC is free software: you can redistribute it and / or modify" << NL
     << "it under the terms of the GNU General Public License as published" << NL
     << "by the Free Software Foundation, either version 3 of the License," << NL
-    << "or any later version." << NL;
-  /*<< NL
-  << "This program is distributed in the hope that it will be useful," << NL
-  << "but WITHOUT ANY WARRANTY; without even the implied warranty of" << NL
-  << "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the" << NL
-  << "GNU General Public License for more details." << NL
-  << NL
-  << "You should have received a copy of the GNU General Public License" << NL
-  << "along with this program.If not, see <http://www.gnu.org/licenses/>." <<
-  NL;*/
+    << "or any later version." << NL << std::endl;
 }
 
 void
@@ -408,8 +414,8 @@ replaceAll(std::string& str, const std::string& from, const std::string& to)
   size_t start_pos = 0;
   while ((start_pos = str.find(from, start_pos)) != std::string::npos) {
     str.replace(start_pos, from.length(), to);
-    start_pos +=
-      to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
+    start_pos += to.length(); // In case 'to' contains 'from', like replacing
+                              // 'x' with 'yx'
   }
 }
 
@@ -421,8 +427,8 @@ replaceStr(std::string source, std::string from, std::string to)
   size_t start_pos = 0;
   while ((start_pos = source.find(from, start_pos)) != std::string::npos) {
     source.replace(start_pos, from.length(), to);
-    start_pos +=
-      to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
+    start_pos += to.length(); // In case 'to' contains 'from', like replacing
+                              // 'x' with 'yx'
   }
   return source;
 }

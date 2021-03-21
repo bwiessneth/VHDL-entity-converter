@@ -41,7 +41,7 @@
 FODGWriter::FODGWriter(std::ostream& os)
   : os(os)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "FODGWriter::FODGWriter(ostream& os)";
 
   gluePointID = 4;
@@ -49,7 +49,7 @@ FODGWriter::FODGWriter(std::ostream& os)
 
 FODGWriter::~FODGWriter()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "FODGWriter::~FODGWriter()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "FODGWriter::~FODGWriter()";
   // pmesg(10,"~FODGWriter()\n");
 }
 

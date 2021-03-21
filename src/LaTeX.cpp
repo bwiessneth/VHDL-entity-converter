@@ -35,11 +35,11 @@
 LaTeX::LaTeX(VHDLEntity sourceEntity)
   : OFileHandler(sourceEntity, "LaTeX", "tex")
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "LaTeX::LaTeX(VHDLEntity sourceEntity)";
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mConfigName = " << mConfigName;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mExtension = " << mExtension;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "mSuffix = " << mSuffix;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mConfigName = " << mConfigName;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mExtension = " << mExtension;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "mSuffix = " << mSuffix;
 
   getMaxTextLengths();
 
@@ -50,7 +50,7 @@ LaTeX::LaTeX(VHDLEntity sourceEntity)
 std::string
 LaTeX::Polarity(int i)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::Polarity(int i)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::Polarity(int i)";
 
   if (mSourceEntity.getLOWActive(i) == true) {
     return cfg.getString("Table.caption_LOWactive");
@@ -63,7 +63,7 @@ LaTeX::Polarity(int i)
 std::string
 LaTeX::Direction(int i)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::Direction(int i)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::Direction(int i)";
 
   return EntityPort::portDirectionsLabels[mSourceEntity.getPortdirection(i)];
 }
@@ -72,7 +72,7 @@ LaTeX::Direction(int i)
 std::string
 LaTeX::Type(int i)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::Type(int i)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::Type(int i)";
 
   return mSourceEntity.getPortTypeStr(i);
 }
@@ -117,7 +117,7 @@ LaTeX::getTable()
 void
 LaTeX::getGenerics()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::getGenerics()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::getGenerics()";
 
   // Build table content
   for (int i = 0; i < mSourceEntity.getNumberOfGenerics(); i++) {
@@ -157,7 +157,7 @@ LaTeX::getGenerics()
 void
 LaTeX::getHeaderGenerics()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::getHeaderGenerics()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::getHeaderGenerics()";
 
   mOutputFile << "\\begin{tabular}{ ";
 
@@ -223,7 +223,7 @@ LaTeX::getHeaderGenerics()
 void
 LaTeX::getHeaderPorts()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::getHeaderPorts()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::getHeaderPorts()";
 
   mOutputFile << "\\begin{tabular}{ ";
 
@@ -387,7 +387,7 @@ LaTeX::getHeaderPorts()
 void
 LaTeX::getPorts()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::getRows()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "LaTeX::getRows()";
 
   // Get the number of ports
   int noPorts =
@@ -570,19 +570,20 @@ LaTeX::getMaxTextLengths()
   colWidthDefaultValue += 2;
   colWidthGenericType += 2;
 
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "colWidthName = " << colWidthName;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "colWidthType = " << colWidthType;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "colWidthName = " << colWidthName;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "colWidthType = " << colWidthType;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthDirection = " << colWidthDirection;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "colWidthPolarity = " << colWidthPolarity;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
+    << "colWidthPolarity = " << colWidthPolarity;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthDescription = " << colWidthDescription;
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "colWidthBlank = " << colWidthBlank;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "colWidthBlank = " << colWidthBlank;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthGenericName = " << colWidthGenericName;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthDefaultValue = " << colWidthDefaultValue;
-  MSG(GROUP::DEBUG, DEBUG::RESULT)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
     << "colWidthGenericType = " << colWidthGenericType;
 }
 
@@ -596,7 +597,7 @@ LaTeX::writeCell(colNames column,
                  std::string fillChar,
                  bool formatting)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "TableGeneratorUtils::writeText(std::string text, std::string fillChar)";
 
   size_t textLength = 0;
@@ -643,22 +644,22 @@ LaTeX::writeCell(colNames column,
     textLength += suffix.length();
 
     if (textLength < maxTextLength) {
-      MSG(GROUP::DEBUG, DEBUG::RESULT)
+      MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
         << "if (textLength + suffix.length() < maxTextLength)";
 
       for (size_t i = 0; i < maxTextLength - textLength; i++) {
-        MSG(GROUP::DEBUG, DEBUG::RESULT) << "fillChar";
+        MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "fillChar";
         mOutputFile << fillChar;
       }
     }
   } else {
     if (textLength < maxTextLength) {
-      MSG(GROUP::DEBUG, DEBUG::RESULT)
+      MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT)
         << "if (textLength + suffix.length() < maxTextLength)";
 
       for (size_t i = 0; i < maxTextLength - textLength - suffix.length();
            i++) {
-        MSG(GROUP::DEBUG, DEBUG::RESULT) << "fillChar";
+        MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "fillChar";
         mOutputFile << fillChar;
       }
     }

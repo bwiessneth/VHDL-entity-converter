@@ -36,6 +36,7 @@
 #include "VHDLParser.h"
 #include "tools.h"
 
+#include <iostream>
 #include <vector>
 
 int
@@ -63,12 +64,12 @@ main(int argc, const char* argv[])
   }
   // Valid programm options and at least one source file
   else {
-    MSG(GROUP::INFO) << "Verbose mode";
+    MSG(LOG_LEVEL::INFO) << "Verbose mode";
 
     for (unsigned int i = 0; i < inputFiles.size(); i++) {
       // Check if input argument has a vhdl extension
       if (validFileExtension(inputFiles[i]) == true) {
-        MSG(GROUP::DEFAULT) << "Parsing " << inputFiles[i];
+        std::cout << "Parsing " << inputFiles[i] << std::endl;
 
         // Create parser object and parse the given source file
         VHDLParser myParser(inputFiles[i]);
@@ -80,13 +81,13 @@ main(int argc, const char* argv[])
         // Check if parsed entity has ports
         if ((myParser.getEntity().getNumberOfInputs() == 0) &&
             (myParser.getEntity().getNumberOfOutputs() == 0)) {
-          MSG(GROUP::ERROR) << "Parsed VHDL entity has no valid ports.";
+          MSG(LOG_LEVEL::ERROR) << "Parsed VHDL entity has no valid ports.";
         } else {
           // Print short overview of parsed vhdl entity when verbose mode is
           // active
           myParser.printResults();
 
-          MSG(GROUP::DEFAULT) << "Generating output files";
+          std::cout << "Generating output files" << std::endl;
 
           // Create a OutputGenerator object which takes care of creating the
           // output files
@@ -94,13 +95,13 @@ main(int argc, const char* argv[])
         }
       } else {
         // Print message if input file is no valid vhdl file
-        MSG(GROUP::ERROR) << inputFiles[i]
-                          << " has no valid vhd extension. Supported "
-                             "extensions are .vhd and .vhdl";
+        MSG(LOG_LEVEL::ERROR) << inputFiles[i]
+                              << " has no valid vhd extension. Supported "
+                                 "extensions are .vhd and .vhdl";
       }
     }
   }
 
-  MSG(GROUP::DEFAULT) << "Done";
+  std::cout << "Done" << std::endl;
   return 0;
 }

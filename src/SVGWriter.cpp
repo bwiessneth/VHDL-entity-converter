@@ -41,12 +41,13 @@
 SVGWriter::SVGWriter(std::ostream& os)
   : os(os)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "SVGWriter::SVGWriter(ostream& os)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
+    << "SVGWriter::SVGWriter(ostream& os)";
 }
 
 SVGWriter::~SVGWriter()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "SVGWriter::~SVGWriter()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "SVGWriter::~SVGWriter()";
 }
 
 void

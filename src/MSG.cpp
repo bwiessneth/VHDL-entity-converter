@@ -35,126 +35,106 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int MSG::MsgGroup = GROUP::DEFAULT;
-int MSG::DebugLevel = DEBUG::NONE;
-int MSG::_MsgGroupTreshold =
-  GROUP::WARNING; // Set default to show Info, Warning, and Error messages
-int MSG::DebugLevelTreshold =
-  DEBUG::NONE; // Display no debug messages per default
+// Setup static members of the MSG class
+LOG_LEVEL MSG::MaxLogLevel = DEFAULT_LOG_LEVEL;
+DEBUG MSG::MaxDebugLevel = DEFAULT_DEBUG_LEVEL;
 
-bool MSG::validOutput = false;
-bool MSG::noLabel = false;
-bool MSG::printLabelOnce = false;
-
-// Deconstructor
 MSG::~MSG()
 {
-  // Check if valid output was created
-  if (validOutput) {
-    // Clear output stream
+  if (validOutput)
     std::cout << std::endl << std::flush;
-
-    // Reset flag
-    validOutput = false;
-  }
 }
 
-// Constructor
-MSG::MSG(int group, int level)
+MSG::MSG(LOG_LEVEL log_level, DEBUG dbg_level)
+  : logLevel(log_level)
+  , debugLevel(dbg_level)
 {
-  MSG::MsgGroup =
-    group; // Remember constructor call parameter for operator<< function
-  MSG::DebugLevel =
-    level; // Remember constructor call parameter for operator<< function
-
-  // Check if current message passes threshold
-  if (MsgGroup <= _MsgGroupTreshold) {
-    // Check if no label is desired
-    if (MSG::noLabel) {
+  // Check if current log level passes threshold
+  switch (logLevel) {
+    case LOG_LEVEL::ERROR:
+      // Always show errors
+      std::cout << std::setw(10) << std::left << "\033[31m[Error]\033[0m ";
       validOutput = true;
-    } else {
-      // Print message group label
-      switch (MsgGroup) {
-        case GROUP::DEFAULT:
-          validOutput = true;
-          break;
-        case GROUP::ERROR:
-          std::cout << std::setw(10) << std::left << "[Error] ";
-          validOutput = true;
-          break;
-        case GROUP::WARNING:
-          std::cout << std::setw(10) << std::left << "[Warning] ";
-          validOutput = true;
-          break;
-        case GROUP::INFO:
-          std::cout << std::setw(10) << std::left << "[Info] ";
-          validOutput = true;
-          break;
-        case GROUP::DEBUG:
-          // Check if current message passes debug filter
-          if (((DebugLevelTreshold & (1 << (level - 1))) >= 1) ||
-              level == DEBUG::NONE) {
-            std::cout << std::setw(10) << std::left << "[Debug] ";
-            validOutput = true;
-          }
-          break;
+      break;
+    case LOG_LEVEL::WARNING:
+      if (MaxLogLevel != LOG_LEVEL::ERROR) {
+        std::cout << std::setw(10) << std::left << "\033[33m[Warning]\033[0m ";
+        validOutput = true;
       }
-    }
+      break;
+    case LOG_LEVEL::INFO:
+      if (MaxLogLevel == LOG_LEVEL::DEBUG || MaxLogLevel == LOG_LEVEL::INFO) {
+        std::cout << std::setw(10) << std::left << "\033[32m[Info]\033[0m ";
+        validOutput = true;
+      }
+      break;
+    case LOG_LEVEL::DEBUG:
+      if (MaxLogLevel == LOG_LEVEL::DEBUG) {
+        if (MaxDebugLevel != DEBUG::NONE || debugLevel == DEBUG::NONE) {
+          std::cout << std::setw(10) << std::left << "\033[36m[Debug]\033[0m ";
+          validOutput = true;
+        }
+      }
+      break;
   }
-}
-
-// Suppress message group label
-void
-MSG::suppressLabel(bool quiet)
-{
-  if (quiet)
-    noLabel = true;
-  else
-    noLabel = false;
 }
 
 // Set global message level
 void
-MSG::setMsgLevel(int level)
+MSG::setLogLevel(LOG_LEVEL level)
 {
-  // Output has to be created by hand
-  std::cout << std::setw(10) << std::left << "[Info] "
-            << "Set MsgGroupTreshold to " << level << std::endl;
-
-  // Set global message threshold
-  _MsgGroupTreshold = level;
-
-  // Check for invalid levels
-  if (_MsgGroupTreshold < -1)
-    _MsgGroupTreshold = -1;
+  // Set global log level threshold
+  MaxLogLevel = level;
 }
 
 // Set global debug filter
 void
-MSG::setDebugLevel(int level)
+MSG::setDebugLevel(DEBUG level)
 {
-  // Output has to be created by hand
-  std::cout << std::setw(10) << std::left << "[Info] "
-            << "Set DebugLevelTreshold to " << level << std::endl;
-
-  // Set global debug filter
-  DebugLevelTreshold = level;
-
-  // Check for invalid filter
-  if (DebugLevelTreshold < -1)
-    DebugLevelTreshold = -1;
+  // Set global debug level filter
+  MaxDebugLevel = level;
 }
 
 // Return global message level
-int
-MSG::getMsgLevel()
+LOG_LEVEL
+MSG::getLogLevel()
 {
-  return _MsgGroupTreshold;
+  return MaxLogLevel;
+}
+
+int
+MSG::getLogLevelAsInt()
+{
+  switch (MaxLogLevel) {
+    case LOG_LEVEL::ERROR:
+      return 0;
+    case LOG_LEVEL::WARNING:
+      return 1;
+    case LOG_LEVEL::INFO:
+      return 2;
+    case LOG_LEVEL::DEBUG:
+      return 3;
+  }
+  return -1;
 }
 
 // Return global debug filter
-int
+DEBUG
 MSG::getDebugLevel()
 {
-  return DebugLevelTreshold;
+  return MaxDebugLevel;
+}
+
+int
+MSG::getDebugLevelAsInt()
+{
+  switch (MaxDebugLevel) {
+    case DEBUG::NONE:
+      return 0;
+    case DEBUG::FUNCTIONCALL:
+      return 1;
+    case DEBUG::RESULT:
+      return 2;
+  }
+  return -1;
 }

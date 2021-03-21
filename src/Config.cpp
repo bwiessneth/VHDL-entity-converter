@@ -171,13 +171,13 @@ std::string Config::configurationKeys[][2] = {
 // Then in the AppImage directory
 // Then in the /etc/vec directory
 Config cfg(std::vector<std::string>({ "vec.conf",
-                                      "~/.config/vec.conf",
-                                      "$APPDIR/usr/share/vec/vec.conf",
-                                      "/etc/vec/vec.conf" }));
+                                      "$HOME/.config/vec.conf",
+                                      "/etc/vec/vec.conf",
+                                      "$APPDIR/usr/share/vec/vec.conf" }));
 
 Config::Config(std::string fileName)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "Config(std::string fileName)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL) << "Config(std::string fileName)";
 
   // Fill configMap with all default keys and their values
   setDefaultConfigValues();
@@ -193,8 +193,8 @@ Config::Config(std::string fileName)
 
   // Check if buffer cF is valid
   if (cF.fail() || cF.bad() || cF.str().empty()) {
-    MSG(GROUP::WARNING) << "Can't open config file at \"" << fileName
-                        << "\". Using default values.";
+    MSG(LOG_LEVEL::WARNING) << "Can't open config file at \"" << fileName
+                            << "\". Using default values.";
   } else {
     // Update the default values with the values found in the config file
     readConfigValues();
@@ -204,7 +204,8 @@ Config::Config(std::string fileName)
 
 Config::Config(std::vector<std::string> fileNameList)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "Config(std::string fileName)";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
+    << "Config(std::vector<std::string> fileNameList)";
 
   // Fill configMap with all default keys and their values
   setDefaultConfigValues();
@@ -217,11 +218,27 @@ Config::Config(std::vector<std::string> fileNameList)
   else
     envAppDir = std::string(rawEnvAppDir);
 
+  // Load HOME env variable in order to resolve $HOME path
+  const char* rawEnvHome = std::getenv("HOME");
+  std::string envHome;
+  if (rawEnvHome == NULL)
+    envHome = std::string("");
+  else
+    envHome = std::string(rawEnvHome);
+
+  // iterate over fileNameList
   for (std::string fileName : fileNameList) {
 
+    // Try to replace $APPDIR with actual path
     std::size_t appDirPos = fileName.find("$APPDIR");
     if (appDirPos != std::string::npos) {
       fileName.replace(appDirPos, 7, envAppDir);
+    }
+
+    // Try to replace $HOME with actual path
+    std::size_t homePos = fileName.find("$HOME");
+    if (homePos != std::string::npos) {
+      fileName.replace(homePos, 5, envHome);
     }
 
     // Create ifstream and open the requested file
@@ -238,22 +255,20 @@ Config::Config(std::vector<std::string> fileNameList)
       // Update the default values with the values found in the config file
       readConfigValues();
       cF.clear();
+      MSG(LOG_LEVEL::INFO) << "Using config file at '" + fileName + "'";
 
       return;
     }
   }
-  MSG(GROUP::WARNING) << "Couldn't open config files at:";
-  for (std::string fileName : fileNameList) {
-    std::cout << " > " << fileName << std::endl;
-  }
-  MSG(GROUP::WARNING) << "Using default values.";
+  MSG(LOG_LEVEL::WARNING) << "Couldn't open config files!";
+  MSG(LOG_LEVEL::WARNING) << "Using default values.";
 }
 
 // Create configuration keys and assign the default values
 void
 Config::setDefaultConfigValues()
 {
-  MSG(GROUP::DEBUG) << "Config::setDefaultConfigValues()";
+  MSG(LOG_LEVEL::DEBUG) << "Config::setDefaultConfigValues()";
 
   // Get the number of elements of keys to create
   int numberOfElements =

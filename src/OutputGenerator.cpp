@@ -41,7 +41,7 @@
 OutputGenerator::OutputGenerator(std::string sourcePath,
                                  VHDLEntity sourceEntity)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "OutputGenerator::OutputGenerator(std::string sourcePath, VHDLEntity "
        "sourceEntity)";
 
@@ -51,7 +51,7 @@ OutputGenerator::OutputGenerator(std::string sourcePath,
 
   // Check if source entity has a valid name and path
   if (mSourceName.empty() || mSourcePath.empty()) {
-    MSG(GROUP::ERROR) << "Empty source name or source path.";
+    MSG(LOG_LEVEL::ERROR) << "Empty source name or source path.";
   } else {
     // Start to generate the OpenDocument file. This is needed for some
     // subsequent steps
@@ -76,7 +76,8 @@ OutputGenerator::OutputGenerator(std::string sourcePath,
 void
 OutputGenerator::generateFODG()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "OutputGenerator::generateFODG()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
+    << "OutputGenerator::generateFODG()";
 
   // Pass the source entity to the FODGTranslator
   FODG mFODG(mSourceEntity);
@@ -87,7 +88,8 @@ OutputGenerator::generateFODG()
 void
 OutputGenerator::generateSVG()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "OutputGenerator::generateFODG()";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
+    << "OutputGenerator::generateFODG()";
 
   SVG mSVG(mSourceEntity);
   return;
@@ -97,8 +99,9 @@ OutputGenerator::generateSVG()
 void
 OutputGenerator::generatePNG()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "OutputGenerator::generatePNG()";
-  MSG(GROUP::INFO) << "Generating PNG file";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
+    << "OutputGenerator::generatePNG()";
+  MSG(LOG_LEVEL::INFO) << "Generating PNG file";
 
   // Initialize common vars
   std::string arg = "\"\"";
@@ -125,11 +128,11 @@ OutputGenerator::generatePNG()
     fPath = cleanPath(cfg.getString("FODG.outputPath")) + "/" + mSourceName;
 #endif
 
-  MSG(GROUP::DEBUG, DEBUG::RESULT) << "PNG.outputPath = " << outputPath;
+  MSG(LOG_LEVEL::DEBUG, DEBUG::RESULT) << "PNG.outputPath = " << outputPath;
 
   // Check if a SO-Installation was specified
   if (SOFFICE_path.empty()) {
-    MSG(GROUP::WARNING)
+    MSG(LOG_LEVEL::WARNING)
       << "PATH.soffice not specified. Please edit your VEC.conf";
   } else {
 #ifdef _WIN32
@@ -160,21 +163,20 @@ OutputGenerator::generatePNG()
     arg += "\'";
 #endif
 
-    MSG(GROUP::INFO) << TAB << "SOFFICE call = " << arg;
+    MSG(LOG_LEVEL::INFO) << TAB << "SOFFICE call = " << arg;
 
     // Execute arg string
-    system(arg.c_str());
+    (void)!system(arg.c_str());
   }
-  return;
 }
 
 // Generate a DokuWiki table source file
 void
 OutputGenerator::generateDokuWikiMarkup()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "OutputGenerator::generateDokuWikiMarkup()";
-  MSG(GROUP::INFO) << "Generating DokuWiki markup";
+  MSG(LOG_LEVEL::INFO) << "Generating DokuWiki markup";
 
   DWMarkup mDWMarkup(mSourceEntity);
   return;
@@ -184,9 +186,9 @@ OutputGenerator::generateDokuWikiMarkup()
 void
 OutputGenerator::generateMarkdown()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "OutputGenerator::generateMarkdown()";
-  MSG(GROUP::INFO) << "Generating markdown";
+  MSG(LOG_LEVEL::INFO) << "Generating markdown";
 
   Markdown mMarkdown(mSourceEntity);
   return;
@@ -196,8 +198,9 @@ OutputGenerator::generateMarkdown()
 void
 OutputGenerator::generateLaTeX()
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL) << "OutputGenerator::generateLaTeX()";
-  MSG(GROUP::INFO) << "Generating LaTeX";
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
+    << "OutputGenerator::generateLaTeX()";
+  MSG(LOG_LEVEL::INFO) << "Generating LaTeX";
 
   LaTeX mLaTeX(mSourceEntity);
   return;
@@ -208,7 +211,7 @@ OutputGenerator::generateLaTeX()
 std::string
 OutputGenerator::getOutputPath(std::string filePath)
 {
-  MSG(GROUP::DEBUG, DEBUG::FUNCTIONCALL)
+  MSG(LOG_LEVEL::DEBUG, DEBUG::FUNCTIONCALL)
     << "OutputGenerator::getOutputPath(std::string filePath)";
 
   int lastSlash = filePath.find_last_of('\\');
