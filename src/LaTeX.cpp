@@ -203,14 +203,14 @@ LaTeX::getHeaderGenerics()
   mOutputFile << "&";
 
   if (cfg.getBool("Table.boldHeadings"))
-    writeCell(colNames::Direction,
-              cfg.getString("Table.Direction_heading"),
+    writeCell(colNames::DefaultValue,
+              cfg.getString("Table.GenericDefaultValue"),
               " \\textbf{",
               "} ",
               " ");
   else
-    writeCell(colNames::Direction,
-              cfg.getString("Table.Direction_heading"),
+    writeCell(colNames::DefaultValue,
+              cfg.getString("Table.GenericDefaultValue"),
               " ",
               " ",
               " ");
