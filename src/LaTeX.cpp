@@ -100,7 +100,7 @@ LaTeX::getTable()
   getHeaderPorts();
   getPorts();
 
-  if (cfg.getBool("Table.exportGenerics")) {
+  if (cfg.getBool("Table.exportGenerics") && mSourceEntity.getNumberOfGenerics() > 0) {
     if (cfg.getBool("LaTeX.addTable"))
       mOutputFile << "\\vspace*{ 1 em }" << std::endl << std::endl;
 
