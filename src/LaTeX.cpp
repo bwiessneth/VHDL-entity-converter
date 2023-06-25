@@ -100,7 +100,7 @@ LaTeX::getTable()
   getHeaderPorts();
   getPorts();
 
-  if (cfg.getBool("Table.exportGenerics")) {
+  if (cfg.getBool("Table.exportGenerics") && mSourceEntity.getNumberOfGenerics() > 0) {
     if (cfg.getBool("LaTeX.addTable"))
       mOutputFile << "\\vspace*{ 1 em }" << std::endl << std::endl;
 
@@ -203,14 +203,14 @@ LaTeX::getHeaderGenerics()
   mOutputFile << "&";
 
   if (cfg.getBool("Table.boldHeadings"))
-    writeCell(colNames::Direction,
-              cfg.getString("Table.Direction_heading"),
+    writeCell(colNames::DefaultValue,
+              cfg.getString("Table.GenericDefaultValue"),
               " \\textbf{",
               "} ",
               " ");
   else
-    writeCell(colNames::Direction,
-              cfg.getString("Table.Direction_heading"),
+    writeCell(colNames::DefaultValue,
+              cfg.getString("Table.GenericDefaultValue"),
               " ",
               " ",
               " ");

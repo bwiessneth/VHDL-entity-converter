@@ -291,6 +291,8 @@ SVG::translate()
 
     // Close group for generics
     mWriter.group(1);
+  } else {
+    currentY = currentY - 1 + strokeWidth + 0.02;
   }
 
   // Open group for entity
